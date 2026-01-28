@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import './styles/variables';
+@use 'sass:color';
+@use './styles/variables' as *;
 
 * {
   box-sizing: border-box;
@@ -32,7 +33,7 @@ a {
   transition: color 0.2s ease;
 
   &:hover {
-    color: lighten($colorInteractiveActive, 10%);
+    color: color.adjust($colorInteractiveActive, $lightness: 10%);
   }
 }
 
@@ -51,7 +52,7 @@ input, textarea, select {
   background-color: $colorTertiary;
   color: $colorPrimary;
   padding: $padding-s;
-  border-radius: 4px;
+  border-radius: $border-radius-s;
   outline: none;
   transition: border-color 0.2s ease;
 
@@ -64,11 +65,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   background-color: $colorSecondary;
-  border-radius: 4px;
+  border-radius: $border-radius-s;
   overflow: hidden;
 
   thead {
-    background-color: darken($colorSecondary, 10%);
+    background-color: color.adjust($colorSecondary, $lightness: -10%);
     
     th {
       padding: $padding-m;
@@ -115,7 +116,7 @@ table {
     color: $colorPrimary;
 
     &:hover {
-      background-color: lighten($colorInteractiveActive, 5%);
+      background-color: color.adjust($colorInteractiveActive, $lightness: 5%);
     }
 
     &:disabled {
@@ -130,7 +131,7 @@ table {
     color: $colorTertiary;
 
     &:hover {
-      background-color: lighten($colorSecondary, 5%);
+      background-color: color.adjust($colorSecondary, $lightness: 5%);
     }
   }
 
@@ -139,7 +140,7 @@ table {
     color: $colorTertiary;
 
     &:hover {
-      background-color: lighten($colorDanger, 5%);
+      background-color: color.adjust($colorDanger, $lightness: 5%);
     }
   }
 
@@ -171,10 +172,10 @@ table {
 }
 
 .thumbnail {
-  width: 50px;
-  height: 50px;
+  width: 3rem;
+  height: 3rem;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: $border-radius-s;
 }
 
 .flex-between {
@@ -205,33 +206,33 @@ table {
 .badge {
   display: inline-block;
   padding: $padding-xs $padding-s;
-  border-radius: 12px;
+  border-radius: $border-radius-m;
   font-size: $font-size-s;
   font-weight: $font-weight-bolder;
 
   &-shown {
-    background-color: lighten(green, 40%);
-    color: darken(green, 20%);
+    background-color: color.adjust(green, $lightness: 40%);
+    color: color.adjust(green, $lightness: -20%);
   }
 
   &-hidden {
-    background-color: lighten(orange, 30%);
-    color: darken(orange, 20%);
+    background-color: color.adjust(orange, $lightness: 30%);
+    color: color.adjust(orange, $lightness: -20%);
   }
 
   &-to-delete {
-    background-color: lighten($colorDanger, 30%);
-    color: darken($colorDanger, 20%);
+    background-color: color.adjust($colorDanger, $lightness: 30%);
+    color: color.adjust($colorDanger, $lightness: -20%);
   }
 
   &-solved {
-    background-color: lighten(green, 40%);
-    color: darken(green, 20%);
+    background-color: color.adjust(green, $lightness: 40%);
+    color: color.adjust(green, $lightness: -20%);
   }
 
   &-unsolved {
-    background-color: lighten(orange, 30%);
-    color: darken(orange, 20%);
+    background-color: color.adjust(orange, $lightness: 30%);
+    color: color.adjust(orange, $lightness: -20%);
   }
 }
 
@@ -245,7 +246,7 @@ table {
     padding: $padding-xs $padding-s;
     background-color: $colorSecondary;
     color: $colorTertiary;
-    border-radius: 4px;
+    border-radius: $border-radius-s;
 
     &:hover:not(:disabled) {
       background-color: $colorInteractiveActive;

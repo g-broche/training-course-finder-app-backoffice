@@ -1,0 +1,29 @@
+@import '../../../../../styles/variables';
+
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: $padding-l;
+}
+
+.login-form {
+  background-color: $colorSecondary;
+  padding: $padding-xl;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba($colorBackdrop, 0.2);
+
+  h2 {
+    text-align: center;
+    margin-bottom: $padding-l;
+    color: $colorTertiary;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: $padding-m;
+  }
+}
