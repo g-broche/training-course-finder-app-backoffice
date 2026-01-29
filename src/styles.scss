@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use 'sass:color';
-@use './styles/variables' as *;
+@use 'styles/variables' as *;
 
 * {
   box-sizing: border-box;
@@ -31,10 +31,6 @@ a {
   color: $colorInteractiveActive;
   text-decoration: none;
   transition: color 0.2s ease;
-
-  &:hover {
-    color: color.adjust($colorInteractiveActive, $lightness: 10%);
-  }
 }
 
 button {
@@ -72,8 +68,8 @@ table {
     background-color: color.adjust($colorSecondary, $lightness: -10%);
     
     th {
-      padding: $padding-m;
-      text-align: left;
+      padding: $padding-xs;
+      text-align: center;
       font-weight: $font-weight-bolder;
       color: $colorTertiary;
     }
@@ -89,9 +85,13 @@ table {
       }
 
       td {
-        padding: $padding-m;
+        padding: $padding-xs;
         color: $colorTertiary;
+        text-align: center;
       }
+    }
+    tr:nth-child(even) {
+      background-color: color.adjust($colorSecondary, $lightness: -3%);
     }
   }
 }
@@ -103,52 +103,44 @@ table {
 }
 
 .btn {
-  padding: $padding-s $padding-m;
+  padding: $padding-xs $padding-s;
   border-radius: 4px;
   font-weight: $font-weight-bolder;
   cursor: pointer;
   display: inline-block;
   text-align: center;
   transition: all 0.2s ease;
-
-  &-primary {
-    background-color: $colorInteractiveActive;
-    color: $colorPrimary;
-
-    &:hover {
-      background-color: color.adjust($colorInteractiveActive, $lightness: 5%);
-    }
-
-    &:disabled {
-      background-color: $colorInteractiveInactive;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-  }
-
-  &-secondary {
-    background-color: $colorSecondary;
-    color: $colorTertiary;
-
-    &:hover {
-      background-color: color.adjust($colorSecondary, $lightness: 5%);
-    }
-  }
-
-  &-danger {
-    background-color: $colorDanger;
-    color: $colorTertiary;
-
-    &:hover {
-      background-color: color.adjust($colorDanger, $lightness: 5%);
-    }
-  }
-
-  &-small {
-    padding: $padding-xs $padding-s;
-    font-size: $font-size-s;
+  color: $colorPrimary;
+  border: 1px solid $colorPrimary;
+  box-shadow: 0 3px 4px rgba($colorBackdrop, 0.3);
+  &:hover:not(.disabled) {
+    box-shadow: 0 5px 8px rgba($colorBackdrop, 0.4);
+    transform: translateY(-1px);
   }
 }
+
+  .btn-positive {
+    background-color: $colorPositive;
+  }
+  .btn-warning {
+    background-color: $colorWarning;
+  }
+  .btn-danger {
+    background-color: $colorDanger;
+  }
+  .btn-neutral {
+    background-color: $colorSecondary;
+  }
+  .btn-action {
+    background-color: $colorInteractiveActive;
+  }
+
+
+  .disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  }
 
 .form-group {
   margin-bottom: $padding-m;
@@ -178,6 +170,12 @@ table {
   border-radius: $border-radius-s;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -203,68 +201,6 @@ table {
   box-shadow: 0 2px 4px rgba($colorBackdrop, 0.1);
 }
 
-.badge {
-  display: inline-block;
-  padding: $padding-xs $padding-s;
-  border-radius: $border-radius-m;
-  font-size: $font-size-s;
-  font-weight: $font-weight-bolder;
-
-  &-shown {
-    background-color: color.adjust(green, $lightness: 40%);
-    color: color.adjust(green, $lightness: -20%);
-  }
-
-  &-hidden {
-    background-color: color.adjust(orange, $lightness: 30%);
-    color: color.adjust(orange, $lightness: -20%);
-  }
-
-  &-to-delete {
-    background-color: color.adjust($colorDanger, $lightness: 30%);
-    color: color.adjust($colorDanger, $lightness: -20%);
-  }
-
-  &-solved {
-    background-color: color.adjust(green, $lightness: 40%);
-    color: color.adjust(green, $lightness: -20%);
-  }
-
-  &-unsolved {
-    background-color: color.adjust(orange, $lightness: 30%);
-    color: color.adjust(orange, $lightness: -20%);
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: $padding-xs;
-  margin-top: $padding-l;
-
-  button {
-    padding: $padding-xs $padding-s;
-    background-color: $colorSecondary;
-    color: $colorTertiary;
-    border-radius: $border-radius-s;
-
-    &:hover:not(:disabled) {
-      background-color: $colorInteractiveActive;
-      color: $colorPrimary;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    &.active {
-      background-color: $colorInteractiveActive;
-      color: $colorPrimary;
-    }
-  }
-}
-
 .detail-row {
   display: flex;
   margin-bottom: $padding-s;
@@ -287,4 +223,13 @@ table {
   display: flex;
   gap: $padding-s;
   margin-top: $padding-m;
+}
+
+form{
+  display:flex;
+  flex-direction: column;
+}
+
+.align-self-end {
+  align-self: flex-end;
 }

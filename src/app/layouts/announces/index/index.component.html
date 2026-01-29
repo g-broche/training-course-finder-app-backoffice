@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Announces</h1>
+    @if (totalElements > 0) {
+      <p>{{ totalElements }} total announce{{ totalElements !== 1 ? 's' : '' }}</p>
+    }
+  </div>
+
+  <app-announce-list 
+    [announces]="announces"
+    [loading]="initialLoading">
+  </app-announce-list>
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [disabled]="paginating"
+    (pageChange)="goToPage($event)">
+  </app-pagination>
+</div>

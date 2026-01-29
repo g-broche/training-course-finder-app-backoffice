@@ -1,0 +1,72 @@
+@if (totalPages > 1) {
+  <div class="pagination-wrapper">
+    <div class="pagination">
+      @if (totalPages > 9) {
+        <button
+          (click)="firstPage()"
+          [disabled]="currentPage === 0 || disabled"
+          class="pagination-text-btn"
+        >
+          First
+        </button>
+      }
+
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 0 || disabled"
+        class="pagination-text-btn"
+      >
+        Previous
+      </button>
+
+      @for (pageNum of visiblePages; track pageNum) {
+        <button
+          (click)="goToPage(pageNum)"
+          [class.active]="pageNum === currentPage"
+          [disabled]="disabled"
+        >
+          {{ pageNum + 1 }}
+        </button>
+      }
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages - 1 || disabled"
+        class="pagination-text-btn"
+      >
+        Next
+      </button>
+
+      @if (totalPages > 9) {
+        <button
+          (click)="lastPage()"
+          [disabled]="currentPage === totalPages - 1 || disabled"
+          class="pagination-text-btn"
+        >
+          Last
+        </button>
+      }
+    </div>
+
+    @if (totalPages > 9) {
+      <div class="pagination-direct">
+        <input
+          type="number"
+          [(ngModel)]="directPageInput"
+          [placeholder]="'Page (1-' + totalPages + ')'"
+          [min]="1"
+          [max]="totalPages"
+          [disabled]="disabled"
+          (keyup.enter)="goToDirectPage()"
+        />
+        <button
+          (click)="goToDirectPage()"
+          [disabled]="disabled || directPageInput === null"
+          class="btn btn-action"
+        >
+          Go
+        </button>
+      </div>
+    }
+  </div>
+}

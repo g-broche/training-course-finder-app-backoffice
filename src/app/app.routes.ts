@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './layouts/auth/login/login.component';
+import { AnnouncesIndexComponent } from './layouts/announces/index/index.component';
+import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -7,8 +9,13 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'announces',
+    component: AnnouncesIndexComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/announces',
     pathMatch: 'full'
   }
 ];

@@ -1,0 +1,69 @@
+@use 'styles/variables' as *;
+
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $padding-m;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: $padding-xs;
+  margin-top: $padding-l;
+
+  button {
+    padding: $padding-xs $padding-s;
+    background-color: $colorSecondary;
+    color: $colorTertiary;
+    border-radius: $border-radius-s;
+
+    &:hover:not(:disabled) {
+      background-color: $colorInteractiveActive;
+      color: $colorPrimary;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: $colorInteractiveActive;
+      color: $colorPrimary;
+    }
+  }
+  .pagination-text-btn {
+    min-width: 5rem;
+  }
+}
+
+.pagination-direct {
+  display: flex;
+  align-items: center;
+  gap: $padding-xs;
+
+    input {
+      width: 6rem;
+      padding: $padding-xs;
+      font-size: $font-size-s;
+
+      // Hide number input spinner buttons
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      // Firefox
+      &[type=number] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    button {
+      padding: $padding-xs $padding-s;
+    }
+}
+

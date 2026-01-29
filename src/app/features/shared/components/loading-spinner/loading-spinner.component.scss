@@ -1,0 +1,54 @@
+@use 'styles/variables' as *;
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-xl;
+  gap: $padding-m;
+}
+
+.spinner {
+  display: inline-block;
+
+  &-small {
+    width: 20px;
+    height: 20px;
+  }
+
+  &-medium {
+    width: 40px;
+    height: 40px;
+  }
+
+  &-large {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.spinner-circle {
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba($colorInteractiveActive, 0.2);
+  border-top-color: $colorInteractiveActive;
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-message {
+  color: $colorTertiary;
+  font-size: $font-size-m;
+  margin: 0;
+  opacity: 0.8;
+}

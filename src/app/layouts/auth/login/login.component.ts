@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { LoginFormComponent } from '../../../features/auth/components/login-form/login-form.component';
 import { AuthService } from '../../../features/auth/auth.service';
 import { LoginCredentials } from '../../../models/auth.model';
@@ -14,29 +15,39 @@ import { LoginCredentials } from '../../../models/auth.model';
 export class LoginComponent {
   @ViewChild(LoginFormComponent) loginForm?: LoginFormComponent;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   async handleLogin(credentials: LoginCredentials): Promise<void> {
     console.log('Login attempt with:', { email: credentials.email });
     
-    const response = await this.authService.login(credentials);
-    
-    if (response.success) {
-      console.log('✅ Login successful!');
-      console.log('📝 Response:', response);
-      console.log('🍪 JWT cookie has been set by the browser (check DevTools > Application > Cookies)');
-      console.log('⏭️  Next step will implement redirect to announces page and admin role validation');
+    try {
+      const response = await this.authService.login(credentials);
       
-      // Reset form loading state
-      if (this.loginForm) {
-        this.loginForm.setLoading(false);
+      if (response.success) {
+        console.log('✅ Login successful!');
+        console.log('📝 Response:', response);
+        console.log('🍪 JWT cookie has been set by the browser (check DevTools > Application > Cookies)');
+        console.log('⏭️  Redirecting to announces page...');
+        
+        // Redirect to announces page
+        this.router.navigate(['/announces']);
+      } else {
+        console.error('❌ Login failed:', response.message);
+        
+        // Show error in form
+        if (this.loginForm) {
+          this.loginForm.setError(response.message || 'Login failed. Please try again.');
+        }
       }
-    } else {
-      console.error('❌ Login failed:', response.message);
+    } catch (error) {
+      console.error('❌ Login error:', error);
       
       // Show error in form
       if (this.loginForm) {
-        this.loginForm.setError(response.message || 'Login failed. Please try again.');
+        this.loginForm.setError('An unexpected error occurred. Please try again.');
       }
     }
   }
