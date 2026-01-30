@@ -1,0 +1,17 @@
+<div class="notifications-container">
+  @for (
+    notification of notifications$ | async;
+    track trackById($index, notification)
+  ) {
+    <div class="notification" [ngClass]="'notification-' + notification.type">
+      <span class="notification-message">{{ notification.message }}</span>
+      <button
+        class="notification-close"
+        (click)="onDismiss(notification.id)"
+        aria-label="Dismiss notification"
+      >
+        ×
+      </button>
+    </div>
+  }
+</div>
