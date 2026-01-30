@@ -1,0 +1,50 @@
+@use 'styles/variables' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $padding-m $padding-l;
+  background-color: $colorSecondary;
+  box-shadow: 0 2px 4px rgba($colorBackdrop, 0.1);
+}
+
+.nav {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: $padding-l;
+  align-items: center;
+}
+
+.nav-link {
+  color: $colorTertiary;
+  text-decoration: none;
+  font-size: $font-size-l;
+  font-weight: $font-weight-regular;
+  padding: $padding-xs $padding-s;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+  text-align: center;
+
+  &:hover {
+    color: rgba($colorInteractiveActive, 0.8);
+  }
+
+  &.nav-link-active {
+    color: $colorInteractiveActive;
+    font-weight: $font-weight-boldest;
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: $padding-m;
+}
+
+.user-display-name {
+  color: $colorTertiary;
+  font-size: $font-size-m;
+  font-weight: $font-weight-bolder;
+}

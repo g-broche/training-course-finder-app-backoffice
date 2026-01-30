@@ -1,0 +1,35 @@
+<header class="header">
+  <nav class="nav">
+    <a
+      routerLink="/announces"
+      routerLinkActive="nav-link-active"
+      class="nav-link"
+    >
+      Announces
+    </a>
+    <a
+      routerLink="/discussions"
+      routerLinkActive="nav-link-active"
+      class="nav-link"
+    >
+      Discussions
+    </a>
+    <a
+      routerLink="/messages"
+      routerLinkActive="nav-link-active"
+      class="nav-link"
+    >
+      Messages
+    </a>
+    <a routerLink="/users" routerLinkActive="nav-link-active" class="nav-link">
+      Users
+    </a>
+  </nav>
+
+  <div class="user-info">
+    @if (currentUser$ | async; as user) {
+      <span class="user-display-name">{{ user.displayName }}</span>
+    }
+    <app-logout-button />
+  </div>
+</header>
