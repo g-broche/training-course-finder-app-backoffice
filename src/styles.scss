@@ -99,13 +99,13 @@ table {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: $padding-l;
+  padding: $padding-m;
 }
 
 .btn {
   padding: $padding-xs $padding-s;
   border-radius: 4px;
-  font-weight: $font-weight-bolder;
+  font-weight: $font-weight-boldest;
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -127,6 +127,7 @@ table {
   }
   .btn-danger {
     background-color: $colorDanger;
+    color: $colorTertiary;
   }
   .btn-neutral {
     background-color: $colorSecondary;
