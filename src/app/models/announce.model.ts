@@ -1,4 +1,4 @@
-import { AnnounceStatus, AnnounceType, InteractivityState, RecordStatus } from "./app.model";
+import { AnnounceType, InteractivityState, RecordStatus, AnnounceStatus } from "./app.model";
 import { UserExcerpt } from "./user.model";
 
 export interface AnnounceDTO {

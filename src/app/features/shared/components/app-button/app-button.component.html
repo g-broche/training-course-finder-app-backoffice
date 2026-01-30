@@ -1,0 +1,13 @@
+<button
+  [type]="buttonType"
+  (click)="handleClick()"
+  [disabled]="isDisabled"
+  [class]="'btn'"
+  [class.btn-positive]="category === 'positive'"
+  [class.btn-warning]="category === 'warning'"
+  [class.btn-danger]="category === 'danger'"
+  [class.btn-neutral]="category === 'neutral'"
+  [class.btn-action]="category === 'action'"
+>
+  {{ label }}
+</button>

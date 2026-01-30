@@ -1,6 +1,7 @@
 export type UserStatus = "allowed" | "banned";
 
 export interface UserExcerpt {
+  id: string;
   displayName: string;
 }
 

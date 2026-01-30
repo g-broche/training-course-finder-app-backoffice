@@ -1,0 +1,61 @@
+<div class="announce-list">
+  @if (loading) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+
+  @if (!loading && announces.length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Photo</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (announce of announces; track announce.id) {
+          <tr>
+            <td>{{ formatDate(announce.createdAt) }}</td>
+            <td>
+              <a [routerLink]="['/users', announce.author.id]" class="user-link">
+                {{ announce.author.displayName }}
+              </a>
+            </td>
+            <td>{{ announce.category }}</td>
+            <td>
+              <app-chip [label]="announce.type" [type]="getTypeChipType(announce.type)"></app-chip>
+            </td>
+            <td class="flex-center">
+              @if (announce.photo) {
+                <img [src]="announce.photo" [alt]="announce.title" class="thumbnail" />
+              } @else {
+                <span class="no-photo">—</span>
+              }
+            </td>
+            <td>
+              <app-chip [label]="announce.recordStatus" [type]="getStatusChipType(announce.recordStatus)"></app-chip>
+            </td>
+            <td>
+              <app-router-button 
+                label="View" 
+                [path]="['/announces', announce.id]"
+                type="action"
+                size="small">
+              </app-router-button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  @if (!loading && announces.length === 0) {
+    <div class="empty-state">
+      No announces found.
+    </div>
+  }
+</div>

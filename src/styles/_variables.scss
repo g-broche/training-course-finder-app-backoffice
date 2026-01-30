@@ -6,6 +6,8 @@ $colorBackdrop: #000000;
 $colorInteractiveInactive: #e8dca8ff;
 $colorInteractiveActive: #FFD900;
 $colorDanger: #FF4A39;
+$colorPositive: #28A745;
+$colorWarning: #ff9d00;
 
 // Spacing/Padding
 $padding-xl: 2rem;
@@ -13,6 +15,11 @@ $padding-l: 1.5rem;
 $padding-m: 1rem;
 $padding-s: 0.75rem;
 $padding-xs: 0.5rem;
+
+// border radius
+$border-radius-s: .25rem;  
+$border-radius-m: .5rem;
+$border-radius-l: 1rem;
 
 // Font sizes
 $font-size-xxl: 2rem;
