@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginFormComponent } from '../../../features/auth/components/login-form/login-form.component';
 import { AuthService } from '../../../features/auth/auth.service';
+import { NotificationService } from '../../../features/shared/services/notification.service';
 import { LoginCredentials } from '../../../models/auth.model';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   async handleLogin(credentials: LoginCredentials): Promise<void> {
@@ -27,23 +29,23 @@ export class LoginComponent {
       const response = await this.authService.login(credentials);
       
       if (response.success) {
-        console.log('✅ Login successful!');
-        console.log('📝 Response:', response);
-        console.log('🍪 JWT cookie has been set by the browser (check DevTools > Application > Cookies)');
-        console.log('⏭️  Redirecting to announces page...');
+        const userName = this.authService.getCurrentUser()?.displayName;
+        const message = `Login successful, welcome ${userName}!`;
+        this.notificationService.showSuccess(message);
         
         // Redirect to announces page
         this.router.navigate(['/announces']);
       } else {
-        console.error('❌ Login failed:', response.message);
-        
         // Show error in form
         if (this.loginForm) {
           this.loginForm.setError(response.message || 'Login failed. Please try again.');
         }
       }
     } catch (error) {
-      console.error('❌ Login error:', error);
+      console.error('Login error:', error);
+      
+      // Show error notification
+      this.notificationService.showError('An unexpected error occurred. Please try again.');
       
       // Show error in form
       if (this.loginForm) {
