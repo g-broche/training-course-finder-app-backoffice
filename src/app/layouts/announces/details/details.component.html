@@ -1,0 +1,24 @@
+@if (isLoading) {
+  <div class="loading-container">
+    <app-loading-spinner size="large" />
+  </div>
+} @else if (announce) {
+  <div class="container">
+    <div class="details-header">
+      <app-router-button
+        [label]="'← Back to Announces'"
+        [path]="['/announces']"
+        [category]="'action'"
+      />
+    </div>
+
+    <app-announce-details
+      [announce]="announce"
+      [isUpdatingStatus]="isUpdatingStatus"
+      [showStatusMenu]="showStatusMenu"
+      [availableStatuses]="getAvailableStatuses()"
+      [onToggleStatusMenu]="onToggleStatusMenu"
+      [onChangeRecordStatus]="onChangeRecordStatus"
+    />
+  </div>
+}

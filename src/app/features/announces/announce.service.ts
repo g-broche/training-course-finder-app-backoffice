@@ -33,9 +33,9 @@ export class AnnounceService {
    * @param announceId The ID of the announce
    * @returns The announce details
    */
-  async getAnnounceById(announceId: string): Promise<AnnounceDTO> {
+  async getAnnounceById(announceId: string): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      const response = await this.apiService.get<AnnounceDTO>(`/api/admin/announces/${announceId}`);
+      const response = await this.apiService.get<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}`);
       return response;
     } catch (error) {
       console.error('Failed to fetch announce:', error);
@@ -48,10 +48,10 @@ export class AnnounceService {
    * @param announceId The ID of the announce
    * @param newStatus The new record status
    */
-  async updateRecordStatus(announceId: string, newStatus: RecordStatus): Promise<void> {
+  async updateRecordStatus(announceId: string, newStatus: RecordStatus): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      await this.apiService.put(`/api/admin/announces/${announceId}/status`, { recordStatus: newStatus });
-      console.log(`✅ Announce ${announceId} status updated to ${newStatus}`);
+      const response = await this.apiService.put<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/recordstatus`, { recordStatus: newStatus });
+      return response;
     } catch (error) {
       console.error('Failed to update announce status:', error);
       throw error;
