@@ -6,22 +6,20 @@ import { AnnounceDTO } from '../../../models/announce.model';
 import { RecordStatus } from '../../../models/app.model';
 import { LoadingSpinnerComponent } from '../../../features/shared/components/loading-spinner/loading-spinner.component';
 import { AppRouterButtonComponent } from '../../../features/shared/components/app-router-button/app-router-button.component';
-import { AppButtonComponent } from '../../../features/shared/components/app-button/app-button.component';
-import { ChipComponent } from '../../../features/shared/components/chip/chip.component';
+import { AnnounceDetailsComponent } from '../../../features/announces/components/details/announce-details.component';
 
 @Component({
-  selector: 'app-announce-details',
+  selector: 'app-announce-details-layout',
   standalone: true,
   imports: [
     LoadingSpinnerComponent,
     AppRouterButtonComponent,
-    AppButtonComponent,
-    ChipComponent
+    AnnounceDetailsComponent
   ],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
-export class AnnounceDetailsComponent implements OnInit {
+export class AnnounceDetailsLayoutComponent implements OnInit {
   announce: AnnounceDTO | null = null;
   isLoading = true;
   isUpdatingStatus = false;
@@ -73,6 +71,7 @@ export class AnnounceDetailsComponent implements OnInit {
     this.showStatusMenu = false;
 
     try {
+      console.log('Updating record status to:', newStatus);
       const updateResponse = await this.announceService.updateRecordStatus(this.announce.id, newStatus);
         if (!updateResponse.success) {
             console.error('Error updating record status:', updateResponse.message);
@@ -96,36 +95,11 @@ export class AnnounceDetailsComponent implements OnInit {
     return allStatuses.filter(status => status !== this.announce!.recordStatus);
   }
 
-  formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }
+  onToggleStatusMenu = (): void => {
+    this.toggleStatusMenu();
+  };
 
-  getTypeChipType(): 'positive' | 'neutral' {
-    return this.announce?.type === 'found' ? 'positive' : 'neutral';
-  }
-
-  getStatusChipType(): 'positive' | 'warning' {
-    return this.announce?.status === 'solved' ? 'positive' : 'warning';
-  }
-
-  getRecordStatusChipType(): 'positive' | 'warning' | 'danger' {
-    if (!this.announce) return 'neutral' as any;
-    switch (this.announce.recordStatus) {
-      case 'shown': return 'positive';
-      case 'hidden': return 'warning';
-      case 'to delete': return 'danger';
-      default: return 'neutral' as any;
-    }
-  }
-
-  getInteractivityChipType(): 'positive' | 'neutral' {
-    return this.announce?.interactivityState === 'open' ? 'positive' : 'neutral';
-  }
+  onChangeRecordStatus = (status: RecordStatus): void => {
+    this.changeRecordStatus(status);
+  };
 }
