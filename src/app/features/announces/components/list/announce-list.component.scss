@@ -1,0 +1,51 @@
+@use "sass:color";
+@use "styles/variables" as *;
+
+.announce-list {
+  width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: $padding-xl;
+  color: $colorTertiary;
+  font-size: $font-size-l;
+}
+
+.grid-table {
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.start-cell {
+  text-align: start;
+}
+
+.center-cell {
+  text-align: center;
+}
+
+.user-link {
+  color: $colorInteractiveActive;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}
+
+.no-photo {
+  color: rgba($colorTertiary, 0.4);
+  font-style: italic;
+}
+
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: $padding-s;
+
+  .btn {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="discussions-index">
+  <div class="page-header">
+    <h1>Discussions</h1>
+    @if (totalElements > 0) {
+      <p>
+        {{ totalElements }} total discussion{{ totalElements !== 1 ? "s" : "" }}
+      </p>
+    }
+  </div>
+
+  <app-discussion-list [discussions]="discussions" [loading]="initialLoading" />
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [disabled]="paginating"
+    (pageChange)="goToPage($event)"
+  />
+</div>

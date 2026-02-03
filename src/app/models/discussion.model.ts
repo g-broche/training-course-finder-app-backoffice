@@ -9,6 +9,8 @@ export interface DetailedDiscussionDTO {
   announceTitle: string;
   interactivityStateName: string;
   messages: MessageDTO[];
+  hasReportedMessage: boolean;
   createdAt: string; // ISO timestamp
   editedAt: string;
+  lastMessageDate: string;
 }

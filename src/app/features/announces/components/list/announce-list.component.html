@@ -1,0 +1,77 @@
+<div class="announce-list">
+  @if (loading) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+
+  @if (!loading && announces.length > 0) {
+    <div class="grid-table">
+      <div class="grid-header">
+        <div class="grid-cell start-cell">Created</div>
+        <div class="grid-cell start-cell">Author</div>
+        <div class="grid-cell start-cell">Category</div>
+        <div class="grid-cell center-cell">Type</div>
+        <div class="grid-cell center-cell">Photo</div>
+        <div class="grid-cell center-cell">Status</div>
+        <div class="grid-cell center-cell">Actions</div>
+      </div>
+      @for (announce of announces; track announce.id) {
+        <div class="grid-row">
+          <div class="grid-cell start-cell">
+            <span class="text-truncate">
+              {{ formatDate(announce.createdAt) }}
+            </span>
+          </div>
+          <div class="grid-cell start-cell">
+            <a
+              [routerLink]="['/users', announce.author.displayName]"
+              class="user-link text-truncate"
+            >
+              {{ announce.author.displayName }}
+            </a>
+          </div>
+          <div class="grid-cell start-cell">
+            <span class="text-truncate">
+              {{ announce.category }}
+            </span>
+          </div>
+          <div class="grid-cell center-cell">
+            <app-chip
+              [label]="announce.type"
+              [type]="getTypeChipType(announce.type)"
+            ></app-chip>
+          </div>
+          <div class="grid-cell center-cell">
+            @if (announce.photo) {
+              <img
+                [src]="announce.photo"
+                alt="missing image"
+                class="thumbnail"
+              />
+            } @else {
+              <span class="no-photo">—</span>
+            }
+          </div>
+          <div class="grid-cell center-cell">
+            <app-chip
+              [label]="announce.recordStatus"
+              [type]="getStatusChipType(announce.recordStatus)"
+            ></app-chip>
+          </div>
+          <div class="grid-cell center-cell">
+            <app-router-button
+              label="View"
+              [path]="['/announces', announce.id]"
+              type="action"
+              size="small"
+            >
+            </app-router-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (!loading && announces.length === 0) {
+    <div class="empty-state">No announces found.</div>
+  }
+</div>

@@ -16,8 +16,8 @@ import { AnnounceDetailsComponent } from '../../../features/announces/components
     AppRouterButtonComponent,
     AnnounceDetailsComponent
   ],
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.scss'
+  templateUrl: './announce-details-layout.component.html',
+  styleUrl: './announce-details-layout.component.scss'
 })
 export class AnnounceDetailsLayoutComponent implements OnInit {
   announce: AnnounceDTO | null = null;

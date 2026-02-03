@@ -27,7 +27,7 @@
         <span>{{ announce.author.displayName }}</span>
         <app-router-button
           [label]="'View Author'"
-          [path]="'/users/' + announce.author.id"
+          [path]="['/users/' + announce.author.displayName]"
           [category]="'action'"
         />
       </div>
