@@ -5,15 +5,15 @@ import { NotificationService } from '../../../features/shared/services/notificat
 import { AnnounceDTO } from '../../../models/announce.model';
 import { RecordStatus } from '../../../models/app.model';
 import { LoadingSpinnerComponent } from '../../../features/shared/components/loading-spinner/loading-spinner.component';
-import { AppRouterButtonComponent } from '../../../features/shared/components/app-router-button/app-router-button.component';
 import { AnnounceDetailsComponent } from '../../../features/announces/components/details/announce-details.component';
+import { ErrorStateComponent } from '../../../features/shared/components/error-state/error-state.component';
 
 @Component({
   selector: 'app-announce-details-layout',
   standalone: true,
   imports: [
     LoadingSpinnerComponent,
-    AppRouterButtonComponent,
+    ErrorStateComponent,
     AnnounceDetailsComponent
   ],
   templateUrl: './announce-details-layout.component.html',
@@ -22,9 +22,9 @@ import { AnnounceDetailsComponent } from '../../../features/announces/components
 export class AnnounceDetailsLayoutComponent implements OnInit {
   announce: AnnounceDTO | null = null;
   isLoading = true;
+  error: string | null = null;
   isUpdatingStatus = false;
   showStatusMenu = false;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -37,24 +37,31 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
     if (announceId) {
       this.loadAnnounce(announceId);
     } else {
-      this.notificationService.showError('No announce ID provided');
+      const errorMessage = 'No announce ID provided';
+      this.notificationService.showError(errorMessage);
+      this.error = errorMessage;
       this.router.navigate(['/announces']);
     }
   }
 
   async loadAnnounce(id: string): Promise<void> {
     this.isLoading = true;
+    this.error = null;
     try {
       const response = await this.announceService.getAnnounceById(id);
       this.announce = response.data || null;
       if (!this.announce) {
-        this.notificationService.showError('Announce not found');
-        this.router.navigate(['/announces']);
+        const errorMessage = !!response && response.message
+        ? response.message
+        : 'an error occurred while fetching the announce details';
+        this.error = errorMessage;
+        this.notificationService.showError(errorMessage);
       }
     } catch (error) {
-      console.error('Error loading announce:', error);
-      this.notificationService.showError('Failed to load announce details');
-      this.router.navigate(['/announces']);
+        console.error('Error loading announce:', error);
+        const errorMessage = 'Failed to load announce details'
+        this.error = errorMessage;
+        this.notificationService.showError(errorMessage);
     } finally {
       this.isLoading = false;
     }

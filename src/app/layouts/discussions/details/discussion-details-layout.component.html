@@ -1,0 +1,16 @@
+<div class="discussion-details-layout">
+  @if (isLoading) {
+    <app-loading-spinner />
+  } @else if (error && !isLoading) {
+    <app-error-state [error]="error" />
+  } @else if (discussion && !isLoading) {
+    <div class="container">
+      <app-discussion-details [discussion]="discussion" />
+
+      <app-discussion-messages
+        [messages]="discussion.messages"
+        [announceAuthorDisplayName]="discussion.announceAuthor.displayName"
+      />
+    </div>
+  }
+</div>

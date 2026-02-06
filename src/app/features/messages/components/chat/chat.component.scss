@@ -1,0 +1,30 @@
+@use "styles/variables" as *;
+
+.messages-container {
+  margin-top: $padding-l;
+}
+
+.messages-title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-boldest;
+  margin-bottom: $padding-l;
+  padding-bottom: $padding-s;
+  border-bottom: 2px solid $colorInteractiveActive;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-m;
+}
+
+.no-messages {
+  text-align: center;
+  padding: $padding-xl;
+  color: $colorSecondary;
+  font-style: italic;
+
+  p {
+    margin: 0;
+  }
+}

@@ -1,9 +1,0 @@
-@use "styles/variables" as *;
-
-.page-header {
-  p {
-    margin-top: $padding-xs;
-    color: rgba($colorTertiary, 0.8);
-    font-size: $font-size-m;
-  }
-}

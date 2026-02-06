@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../core/api.service';
-import { DetailedDiscussionDTO } from '../../models/discussion.model';
+import { DetailedDiscussionDTO, DiscussionDTO } from '../../models/discussion.model';
 import { ApiResponse, PaginatedResponse } from '../../models/api.model';
 
 @Injectable({
@@ -15,9 +15,9 @@ export class DiscussionService {
    * @param size Number of items per page
    * @returns Paginated response with discussions
    */
-  async getDiscussionsPaginated(page: number = 0, size: number = 20): Promise<ApiResponse<PaginatedResponse<DetailedDiscussionDTO>>> {
+  async getDiscussionsPaginated(page: number = 0, size: number = 20): Promise<ApiResponse<PaginatedResponse<DiscussionDTO>>> {
     try {
-      const response = await this.apiService.get<ApiResponse<PaginatedResponse<DetailedDiscussionDTO>>>(
+      const response = await this.apiService.get<ApiResponse<PaginatedResponse<DiscussionDTO>>>(
         `/api/admin/discussions/paginated?page=${page}&size=${size}`
       );
       return response;

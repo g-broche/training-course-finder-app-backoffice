@@ -1,0 +1,37 @@
+@use "styles/variables" as *;
+
+.info-row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  margin-bottom: $padding-s;
+  align-items: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-row-button {
+  display: grid;
+  grid-template-columns: 10rem 1fr auto;
+  align-items: center;
+  gap: $padding-m;
+  margin-bottom: $padding-s;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.status-badge {
+  padding: $padding-xs $padding-s;
+  border-radius: 4px;
+  background-color: rgba($colorInteractiveActive, 0.2);
+  display: inline-block;
+  font-weight: $font-weight-boldest;
+
+  &.reported {
+    background-color: rgba($colorDanger, 0.2);
+    color: $colorDanger;
+  }
+}

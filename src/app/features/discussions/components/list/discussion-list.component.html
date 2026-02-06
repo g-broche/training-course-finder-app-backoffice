@@ -9,7 +9,7 @@
         <div class="grid-cell start-cell">Created</div>
         <div class="grid-cell start-cell">Last Message</div>
         <div class="grid-cell start-cell">Messages</div>
-        <div class="grid-cell start-cell">Reported</div>
+        <div class="grid-cell center-cell">Reported</div>
         <div class="grid-cell start-cell">Related Announce</div>
         <div class="grid-cell start-cell">Author</div>
         <div class="grid-cell start-cell">Responder</div>
@@ -29,7 +29,7 @@
           </div>
           <div class="grid-cell center-cell">
             <span class="text-truncate">
-              {{ getMessageCount(discussion) }}
+              {{ discussion.messageCount }}
             </span>
           </div>
           <div class="grid-cell center-cell">
@@ -38,31 +38,22 @@
             }
           </div>
           <div class="grid-cell title-cell start-cell">
-            <a
-              [routerLink]="['/announces', discussion.announceId]"
-              class="announce-link text-truncate"
-            >
-              {{ discussion.announceTitle }}
-            </a>
+            <app-link-label
+              [link]="['/announces', discussion.announceId]"
+              [label]="discussion.announceTitle"
+            />
           </div>
           <div class="grid-cell name-cell start-cell">
-            <a
-              [routerLink]="['/users', discussion.announceAuthor.displayName]"
-              class="user-link text-truncate"
-            >
-              {{ discussion.announceAuthor.displayName }}
-            </a>
+            <app-link-label
+              [link]="['/users', discussion.announceAuthor.displayName]"
+              [label]="discussion.announceAuthor.displayName"
+            />
           </div>
           <div class="grid-cell name-cell start-cell">
-            <a
-              [routerLink]="[
-                '/users',
-                discussion.announceResponder.displayName,
-              ]"
-              class="user-link text-truncate"
-            >
-              {{ discussion.announceResponder.displayName }}
-            </a>
+            <app-link-label
+              [link]="['/users', discussion.announceResponder.displayName]"
+              [label]="discussion.announceResponder.displayName"
+            />
           </div>
           <div class="grid-cell start-cell">
             <app-router-button

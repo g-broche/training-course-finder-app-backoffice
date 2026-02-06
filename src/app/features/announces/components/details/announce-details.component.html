@@ -22,13 +22,11 @@
         <span>Category:</span>
         <span>{{ announce.category }}</span>
       </div>
-      <div class="info-row-button">
+      <div class="info-row">
         <span>Username:</span>
-        <span>{{ announce.author.displayName }}</span>
-        <app-router-button
-          [label]="'View Author'"
-          [path]="['/users/' + announce.author.displayName]"
-          [category]="'action'"
+        <app-link-label
+          [label]="announce.author.displayName"
+          [link]="['/users/' + announce.author.displayName]"
         />
       </div>
       <div class="info-row">

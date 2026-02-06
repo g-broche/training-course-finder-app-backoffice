@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 import { DiscussionListComponent } from '../../../features/discussions/components/list/discussion-list.component';
 import { PaginationComponent } from '../../../features/shared/components/pagination/pagination.component';
 import { DiscussionService } from '../../../features/discussions/discussion.service';
-import { DetailedDiscussionDTO } from '../../../models/discussion.model';
+import { DiscussionDTO } from '../../../models/discussion.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
 
 @Component({
   selector: 'app-discussions-index',
   standalone: true,
   imports: [CommonModule, DiscussionListComponent, PaginationComponent],
-  templateUrl: './announce-index.component.html',
-  styleUrl: './announce-index.component.scss'
+  templateUrl: './discussion-index.component.html',
+  styleUrl: './discussion-index.component.scss'
 })
 export class DiscussionsIndexComponent implements OnInit {
-  discussions: DetailedDiscussionDTO[] = [];
+  discussions: DiscussionDTO[] = [];
   initialLoading: boolean = true;  // Show spinner only on first load
   paginating: boolean = false;     // Track pagination loading
   currentPage: number = 0;
@@ -37,7 +37,7 @@ export class DiscussionsIndexComponent implements OnInit {
     }
 
     try {
-      const response: ApiResponse<PaginatedResponse<DetailedDiscussionDTO>> = await this.discussionService.getDiscussionsPaginated(
+      const response: ApiResponse<PaginatedResponse<DiscussionDTO>> = await this.discussionService.getDiscussionsPaginated(
         this.currentPage,
         this.pageSize
       );

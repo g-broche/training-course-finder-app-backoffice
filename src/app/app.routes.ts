@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './layouts/auth/login/login.component';
 import { AnnouncesIndexLayoutComponent } from './layouts/announces/index/announce-index-layout.component';
 import { AnnounceDetailsLayoutComponent } from './layouts/announces/details/announce-details-layout.component';
-import { DiscussionsIndexComponent } from './layouts/discussions/index/announce-index.component';
+import { DiscussionsIndexComponent } from './layouts/discussions/index/discussion-index.component';
+import { DiscussionDetailsLayoutComponent } from './layouts/discussions/details/discussion-details-layout.component';
 import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
@@ -23,6 +24,11 @@ export const routes: Routes = [
   {
     path: 'discussions',
     component: DiscussionsIndexComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'discussions/:id',
+    component: DiscussionDetailsLayoutComponent,
     canActivate: [authGuard]
   },
   {

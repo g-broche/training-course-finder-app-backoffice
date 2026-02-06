@@ -1,0 +1,192 @@
+@use "sass:color";
+@use "styles/variables" as *;
+
+.grid-table {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 3fr 2fr 2fr 2fr;
+  gap: 0;
+  background-color: $colorSecondary;
+  border-radius: $border-radius-s;
+  overflow: hidden;
+  width: 100%;
+}
+
+.grid-header {
+  display: contents;
+
+  .grid-cell {
+    background-color: color.adjust($colorSecondary, $lightness: -10%);
+    padding: $padding-xs;
+    font-weight: $font-weight-bolder;
+    color: $colorTertiary;
+  }
+}
+
+.grid-row {
+  display: contents;
+
+  .grid-cell {
+    padding: $padding-xs;
+    color: $colorTertiary;
+    border-bottom: 1px solid rgba($colorTertiary, 0.1);
+    overflow: hidden;
+  }
+
+  &:nth-child(even) .grid-cell {
+    background-color: color.adjust($colorSecondary, $lightness: -3%);
+  }
+}
+
+.grid-row .start-cell,
+.grid-header .start-cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+
+.grid-row .center-cell,
+.grid-header .center-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  padding: $padding-m;
+}
+
+.surface {
+  background-color: $colorSecondary;
+  color: $colorTertiary;
+}
+
+.btn {
+  padding: $padding-xs $padding-s;
+  border-radius: 4px;
+  font-weight: $font-weight-boldest;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease;
+  color: $colorPrimary;
+  border: 1px solid $colorPrimary;
+  box-shadow: 0 3px 4px rgba($colorBackdrop, 0.3);
+  &:hover:not(.disabled) {
+    box-shadow: 0 5px 8px rgba($colorBackdrop, 0.4);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-positive {
+  background-color: $colorPositive;
+}
+.btn-warning {
+  background-color: $colorWarning;
+}
+.btn-danger {
+  background-color: $colorDanger;
+  color: $colorTertiary;
+}
+.btn-neutral {
+  background-color: $colorSecondary;
+}
+.btn-action {
+  background-color: $colorInteractiveActive;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: $colorDanger;
+  font-size: $font-size-s;
+}
+
+.thumbnail {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: $border-radius-s;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin-bottom: $padding-l;
+  padding-bottom: $padding-m;
+  border-bottom: 2px solid $colorSecondary;
+}
+
+.card {
+  background-color: $colorSecondary;
+  border-radius: 4px;
+  padding: $padding-l;
+  margin-bottom: $padding-m;
+  box-shadow: 0 2px 4px rgba($colorBackdrop, 0.1);
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: $padding-s;
+  padding: $padding-s 0;
+  border-bottom: 1px solid rgba($colorTertiary, 0.1);
+
+  .label {
+    font-weight: $font-weight-bolder;
+    min-width: 150px;
+    color: $colorTertiary;
+  }
+
+  .value {
+    color: $colorTertiary;
+    flex: 1;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: $padding-s;
+  margin-top: $padding-m;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.text-truncate {
+  display: -webkit-box !important;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.page-header {
+  p {
+    margin-top: $padding-xs;
+    color: rgba($colorTertiary, 0.8);
+    font-size: $font-size-m;
+  }
+}

@@ -1,0 +1,127 @@
+@use "styles/variables" as *;
+
+.message-wrapper {
+  display: flex;
+  width: 100%;
+
+  &.author-message {
+    justify-content: flex-end;
+  }
+
+  &.responder-message {
+    justify-content: flex-start;
+  }
+
+  &.chat-message .message-card {
+    width: 80%;
+  }
+
+  &:not(.chat-message) .message-card {
+    width: 100%;
+  }
+}
+
+.message-card {
+  background-color: $colorTertiary;
+  border-radius: $border-radius-m;
+  overflow: hidden;
+  padding: $padding-m;
+  box-shadow: 0 2px 6px rgba($colorBackdrop, 0.1);
+  border: 1px solid rgba($colorSecondary, 0.2);
+  position: relative;
+
+  &.reported {
+    border: 2px solid $colorDanger;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($colorDanger, 0.05);
+      pointer-events: none;
+    }
+  }
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $padding-s;
+  gap: $padding-m;
+}
+
+.message-author {
+  display: flex;
+  align-items: center;
+  gap: $padding-s;
+  flex-wrap: wrap;
+}
+
+.author-badge {
+  padding: $padding-xs $padding-m;
+  background-color: $colorInteractiveActive;
+  color: $colorPrimary;
+  border-radius: 4px;
+  font-size: $font-size-s;
+  font-weight: $font-weight-boldest;
+}
+
+.reported-badge {
+  padding: $padding-xs $padding-m;
+  background-color: $colorDanger;
+  color: white;
+  border-radius: 4px;
+  font-size: $font-size-s;
+  font-weight: $font-weight-boldest;
+}
+
+.message-actions {
+  flex-shrink: 0;
+}
+
+.message-content {
+  padding: $padding-s 0;
+  line-height: 1.6;
+  color: $colorPrimary;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.message-footer {
+  display: flex;
+  align-items: center;
+  gap: $padding-s;
+  margin-top: $padding-s;
+  padding-top: $padding-s;
+  border-top: 1px solid rgba($colorSecondary, 0.2);
+}
+
+.message-date {
+  font-size: $font-size-s;
+  color: $colorSecondary;
+}
+
+.edited-label {
+  font-size: $font-size-s;
+  color: $colorSecondary;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .message-wrapper.chat-message .message-card {
+    max-width: 90%;
+  }
+
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .message-actions {
+    width: 100%;
+  }
+}
