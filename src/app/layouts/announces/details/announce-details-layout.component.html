@@ -1,18 +1,23 @@
 @if (isLoading) {
   <app-loading-spinner />
-
 } @else if (error && !isLoading) {
   <app-error-state [error]="error" />
-
 } @else if (announce) {
   <div class="container">
     <app-announce-details
       [announce]="announce"
+      [isUpdatingType]="isUpdatingType"
       [isUpdatingStatus]="isUpdatingStatus"
-      [showStatusMenu]="showStatusMenu"
+      [isUpdatingInteractivity]="isUpdatingInteractivity"
+      [isUpdatingVisibility]="isUpdatingVisibility"
+      [availableTypes]="getAvailableTypes()"
       [availableStatuses]="getAvailableStatuses()"
-      [onToggleStatusMenu]="onToggleStatusMenu"
-      [onChangeRecordStatus]="onChangeRecordStatus"
+      [availableInteractivities]="getAvailableInteractivities()"
+      [availableVisibilities]="getAvailableVisibilities()"
+      (typeChanged)="changeType($event)"
+      (statusChanged)="changeStatus($event)"
+      (interactivityChanged)="changeInteractivity($event)"
+      (visibilityChanged)="changeVisibility($event)"
     />
   </div>
 }
