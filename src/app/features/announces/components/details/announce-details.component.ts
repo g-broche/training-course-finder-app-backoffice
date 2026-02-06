@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { AnnounceDTO } from '../../../../models/announce.model';
 import { RecordStatus } from '../../../../models/app.model';
-import { AppRouterButtonComponent } from '../../../shared/components/app-router-button/app-router-button.component';
 import { AppButtonComponent } from '../../../shared/components/app-button/app-button.component';
 import { ChipComponent } from '../../../shared/components/chip/chip.component';
+import { AppLinkLabelComponent } from '../../../shared/components/app-link-label/app-link-label.component';
 
 @Component({
   selector: 'app-announce-details',
   standalone: true,
   imports: [
-    AppRouterButtonComponent,
+    AppLinkLabelComponent,
     AppButtonComponent,
     ChipComponent
   ],
