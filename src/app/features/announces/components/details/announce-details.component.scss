@@ -23,6 +23,7 @@
   display: grid;
   grid-template-columns: 8rem 1fr;
   margin-bottom: $padding-s;
+  align-items: center;
 
   &:last-child {
     margin-bottom: 0;

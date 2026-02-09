@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { DetailedDiscussionDTO, DiscussionDTO } from '../../models/discussion.model';
 import { ApiResponse, PaginatedResponse } from '../../models/api.model';
+import { InteractivityState } from '../../models/app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,21 @@ export class DiscussionService {
       return response;
     } catch (error) {
       console.error('Failed to fetch discussion:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Updates the interactivity state of a discussion
+   * @param discussionId The ID of the discussion
+   * @param newState The new interactivity state
+   */
+  async updateInteractivityState(discussionId: string, newState: InteractivityState): Promise<ApiResponse<DetailedDiscussionDTO>> {
+    try {
+      const response = await this.apiService.put<ApiResponse<DetailedDiscussionDTO>>(`/api/admin/discussions/${discussionId}/interactivity`, { interactivityState: newState });
+      return response;
+    } catch (error) {
+      console.error('Failed to update discussion interactivity state:', error);
       throw error;
     }
   }

@@ -2,7 +2,7 @@
 
 .info-row {
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 8rem 1fr;
   margin-bottom: $padding-s;
   align-items: center;
 
@@ -15,7 +15,6 @@
   display: grid;
   grid-template-columns: 8rem 1fr 1fr;
   align-items: center;
-  gap: $padding-m;
   margin-bottom: $padding-s;
 
   &:last-child {

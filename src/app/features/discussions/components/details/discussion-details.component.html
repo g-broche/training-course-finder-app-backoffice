@@ -29,9 +29,19 @@
           [label]="discussion.announceResponder.displayName"
         />
       </div>
-      <div class="info-row">
-        <span class="info-label">Interactivity State:</span>
-        <span>{{ discussion.interactivityStateName }}</span>
+      <div class="info-row-button">
+        <span class="info-label">Interactivity:</span>
+        <app-chip
+          [label]="discussion.interactivityStateName"
+          [type]="InteractivityStateChip[discussion.interactivityStateName]"
+        />
+        <app-dropdown-menu
+          buttonLabel="Change value"
+          loadingLabel="Updating..."
+          [isLoading]="isUpdatingInteractivity"
+          [menuItems]="interactivityMenuItems"
+          (itemSelected)="handleInteractivityChange($event)"
+        />
       </div>
       <div class="info-row">
         <span class="info-label">Has Report:</span>

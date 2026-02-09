@@ -1,5 +1,6 @@
 import { MessageDTO } from './message.model';
 import { UserExcerpt } from './user.model';
+import { InteractivityState } from './app.model';
 
 export interface DiscussionDTO {
   discussionId: string;
@@ -7,7 +8,7 @@ export interface DiscussionDTO {
   announceAuthor: UserExcerpt;
   announceResponder: UserExcerpt;
   announceTitle: string;
-  interactivityStateName: string;
+  interactivityStateName: InteractivityState;
   messageCount: number;
   hasReportedMessage: boolean;
   createdAt: string; // ISO timestamp
@@ -20,7 +21,7 @@ export interface DetailedDiscussionDTO {
   announceAuthor: UserExcerpt;
   announceResponder: UserExcerpt;
   announceTitle: string;
-  interactivityStateName: string;
+  interactivityStateName: InteractivityState;
   messages: MessageDTO[];
   hasReportedMessage: boolean;
   createdAt: string; // ISO timestamp
