@@ -1,0 +1,29 @@
+@use "styles/variables" as *;
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $padding-l;
+  gap: $padding-m;
+
+  .header-content {
+    flex: 1;
+
+    h1 {
+      margin: 0 0 $padding-xs 0;
+    }
+
+    p {
+      margin: 0;
+      color: $colorSecondary;
+      font-size: $font-size-s;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: $padding-s;
+  }
+}

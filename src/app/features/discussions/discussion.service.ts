@@ -14,12 +14,17 @@ export class DiscussionService {
    * Gets paginated list of discussions
    * @param page Page number (0-indexed)
    * @param size Number of items per page
+   * @param orderBy Order by 'createdDate' or 'lastMessageDate' (default: 'createdDate')
    * @returns Paginated response with discussions
    */
-  async getDiscussionsPaginated(page: number = 0, size: number = 20): Promise<ApiResponse<PaginatedResponse<DiscussionDTO>>> {
+  async getDiscussionsPaginated(
+    page: number = 0,
+    size: number = 20,
+    orderBy: 'createdDate' | 'lastMessageDate' = 'createdDate'
+  ): Promise<ApiResponse<PaginatedResponse<DiscussionDTO>>> {
     try {
       const response = await this.apiService.get<ApiResponse<PaginatedResponse<DiscussionDTO>>>(
-        `/api/admin/discussions/paginated?page=${page}&size=${size}`
+        `/api/admin/discussions/paginated?page=${page}&size=${size}&orderBy=${orderBy}`
       );
       return response;
     } catch (error) {
