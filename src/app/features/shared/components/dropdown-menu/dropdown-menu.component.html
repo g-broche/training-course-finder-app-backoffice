@@ -1,0 +1,23 @@
+<div class="dropdown-menu-container">
+  <app-button
+    [label]="getButtonLabel()"
+    [category]="buttonCategory"
+    [isDisabled]="isDisabled || isLoading"
+    (callback)="toggleMenu()"
+  />
+
+  @if (showMenu && !isLoading) {
+    <div class="dropdown-menu">
+      @for (item of menuItems; track item.value) {
+        <button
+          class="dropdown-menu-item"
+          [class.disabled]="item.disabled"
+          [disabled]="item.disabled"
+          (click)="selectItem(item)"
+        >
+          {{ item.label }}
+        </button>
+      }
+    </div>
+  }
+</div>

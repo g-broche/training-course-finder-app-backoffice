@@ -22,58 +22,69 @@
         <span>Category:</span>
         <span>{{ announce.category }}</span>
       </div>
-      <div class="info-row-button">
+      <div class="info-row">
         <span>Username:</span>
-        <span>{{ announce.author.displayName }}</span>
-        <app-router-button
-          [label]="'View Author'"
-          [path]="'/users/' + announce.author.id"
-          [category]="'action'"
+        <app-link-label
+          [label]="announce.author.displayName"
+          [link]="['/users/' + announce.author.displayName]"
         />
       </div>
-      <div class="info-row">
+      <div class="info-row-button">
         <span>Type:</span>
-        <app-chip [label]="announce.type" [type]="getTypeChipType()" />
+        <app-chip
+          [label]="announce.type"
+          [type]="AnnounceTypeChip[announce.type]"
+        />
+        <app-dropdown-menu
+          buttonLabel="Change value"
+          loadingLabel="Updating..."
+          [isLoading]="isUpdatingType"
+          [menuItems]="typeMenuItems"
+          (itemSelected)="handleTypeChange($event)"
+        />
       </div>
-      <div class="info-row">
+      <div class="info-row-button">
         <span>Status:</span>
-        <app-chip [label]="announce.status" [type]="getStatusChipType()" />
+        <app-chip
+          [label]="announce.status"
+          [type]="AnnounceStatusChip[announce.status]"
+        />
+        <app-dropdown-menu
+          buttonLabel="Change value"
+          loadingLabel="Updating..."
+          [isLoading]="isUpdatingStatus"
+          [menuItems]="statusMenuItems"
+          (itemSelected)="handleStatusChange($event)"
+        />
       </div>
-      <div class="info-row">
+      <div class="info-row-button">
         <span>Interactivity:</span>
         <app-chip
           [label]="announce.interactivityState"
-          [type]="getInteractivityChipType()"
+          [type]="InteractivityStateChip[announce.interactivityState]"
+        />
+        <app-dropdown-menu
+          buttonLabel="Change value"
+          loadingLabel="Updating..."
+          [isLoading]="isUpdatingInteractivity"
+          [menuItems]="interactivityMenuItems"
+          (itemSelected)="handleInteractivityChange($event)"
         />
       </div>
       <div class="info-row-button">
         <span>Visibility Status:</span>
         <app-chip
           [label]="announce.recordStatus"
-          [type]="getRecordStatusChipType()"
+          [type]="RecordStatusChip[announce.recordStatus]"
         />
 
-        <div class="status-actions">
-          <app-button
-            [label]="isUpdatingStatus ? 'Updating...' : 'Change Status'"
-            [category]="'action'"
-            [isDisabled]="isUpdatingStatus"
-            (callback)="toggleStatusMenu()"
-          />
-
-          @if (showStatusMenu && !isUpdatingStatus) {
-            <div class="status-menu">
-              @for (status of availableStatuses; track status) {
-                <button
-                  class="status-menu-item"
-                  (click)="changeRecordStatus(status)"
-                >
-                  {{ status }}
-                </button>
-              }
-            </div>
-          }
-        </div>
+        <app-dropdown-menu
+          buttonLabel="Change value"
+          loadingLabel="Updating..."
+          [isLoading]="isUpdatingVisibility"
+          [menuItems]="visibilityMenuItems"
+          (itemSelected)="handleVisibilityChange($event)"
+        />
       </div>
     </div>
 

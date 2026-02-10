@@ -10,8 +10,8 @@ import { AppRouterButtonComponent } from '../../../shared/components/app-router-
   selector: 'app-announce-list',
   standalone: true,
   imports: [CommonModule, RouterModule, LoadingSpinnerComponent, ChipComponent, AppRouterButtonComponent],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  templateUrl: './announce-list.component.html',
+  styleUrl: './announce-list.component.scss'
 })
 export class AnnounceListComponent {
   @Input() announces: AnnounceDTO[] = [];

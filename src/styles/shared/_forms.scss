@@ -1,0 +1,57 @@
+@use "styles/variables" as *;
+
+form {
+  background-color: $colorSecondary;
+  padding: $padding-xl;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: $boxShadow;
+
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-m;
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: $padding-l;
+    color: $colorTertiary;
+  }
+
+  .form-group {
+    margin-bottom: $padding-m;
+
+    label {
+      display: block;
+      margin-bottom: $padding-xs;
+      font-weight: $font-weight-bolder;
+      color: $colorTertiary;
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: $colorTertiary;
+  color: $colorPrimary;
+  padding: $padding-s;
+  border-radius: $border-radius-s;
+
+  &:focus {
+    outline: 2px solid $colorInteractiveActive;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $colorTertiary inset !important;
+}

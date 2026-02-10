@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Discussions</h1>
+      @if (totalElements > 0) {
+        <p>
+          {{ totalElements }} total discussion{{
+            totalElements !== 1 ? "s" : ""
+          }}
+        </p>
+      }
+    </div>
+    <div class="header-actions">
+      <div>
+        <span>Order by:</span>
+        <app-button
+          [label]="getOrderByLabel()"
+          [category]="'action'"
+          [isDisabled]="initialLoading || paginating"
+          (callback)="toggleOrderBy()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <app-discussion-list [discussions]="discussions" [loading]="initialLoading" />
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [disabled]="paginating"
+    (pageChange)="goToPage($event)"
+  />
+</div>

@@ -1,0 +1,31 @@
+<div
+  class="message-wrapper"
+  [class.author-message]="isAnnounceCreator"
+  [class.responder-message]="!isAnnounceCreator"
+  [class.chat-message]="asChatMessage"
+>
+  <div class="message-card" [class.reported]="message.isReported">
+    <div class="message-header">
+      <div class="message-author">
+        <strong>{{ message.author.displayName }}</strong>
+        @if (isAnnounceCreator) {
+          <app-chip label="Author" />
+        }
+      </div>
+      @if (message.isReported) {
+        <app-chip label="Reported message" type="danger" />
+      }
+    </div>
+
+    <div class="message-content">{{ message.content }}</div>
+
+    <div class="message-footer">
+      <span class="message-date">{{ formatDate(message.createdAt) }}</span>
+      @if (message.editedAt !== message.createdAt) {
+        <span class="edited-label"
+          >(Edited: {{ formatDate(message.editedAt) }})</span
+        >
+      }
+    </div>
+  </div>
+</div>

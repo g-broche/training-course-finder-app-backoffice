@@ -1,0 +1,9 @@
+@use "styles/variables" as *;
+.error-container {
+  padding: $padding-xl;
+  text-align: center;
+}
+
+.error-message {
+  color: $colorDanger;
+}

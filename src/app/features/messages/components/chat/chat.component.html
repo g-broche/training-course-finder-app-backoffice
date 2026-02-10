@@ -1,0 +1,19 @@
+<div class="messages-container">
+  <h2 class="messages-title">Messages</h2>
+
+  <div class="messages-list">
+    @for (message of messages; track message.messageId) {
+      <app-message-card
+        [message]="message"
+        [isAnnounceCreator]="isAuthorMessage(message)"
+        [asChatMessage]="true"
+      />
+    }
+
+    @if (messages.length === 0) {
+      <div class="no-messages">
+        <p>No messages in this discussion yet.</p>
+      </div>
+    }
+  </div>
+</div>

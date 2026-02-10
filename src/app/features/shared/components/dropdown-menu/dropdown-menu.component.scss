@@ -1,0 +1,41 @@
+@use "styles/variables" as *;
+
+.dropdown-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100%);
+  right: 0;
+  background: $colorTertiary;
+  border: 1px solid $colorPrimary;
+  border-radius: $border-radius-s;
+  box-shadow: $boxShadow;
+  min-width: 150px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.dropdown-menu-item {
+  display: block;
+  width: 100%;
+  padding: $padding-s $padding-m;
+  cursor: pointer;
+  color: $colorPrimary;
+  transition: background-color 0.2s;
+
+  &:hover:not(.disabled) {
+    background-color: rgba($colorInteractiveActive, 0.4);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $colorPrimary;
+  }
+}

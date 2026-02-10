@@ -1,4 +1,4 @@
-@use 'styles/variables' as *;
+@use "styles/variables" as *;
 
 .header {
   display: flex;
@@ -10,9 +10,7 @@
 }
 
 .nav {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
   gap: $padding-l;
   align-items: center;
 }

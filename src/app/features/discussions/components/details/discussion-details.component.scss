@@ -1,0 +1,36 @@
+@use "styles/variables" as *;
+
+.info-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  margin-bottom: $padding-s;
+  align-items: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-row-button {
+  display: grid;
+  grid-template-columns: 8rem 1fr 1fr;
+  align-items: center;
+  margin-bottom: $padding-s;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.status-badge {
+  padding: $padding-xs $padding-s;
+  border-radius: 4px;
+  background-color: rgba($colorInteractiveActive, 0.2);
+  display: inline-block;
+  font-weight: $font-weight-boldest;
+
+  &.reported {
+    background-color: rgba($colorDanger, 0.2);
+    color: $colorDanger;
+  }
+}

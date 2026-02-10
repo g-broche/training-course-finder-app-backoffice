@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnnounceListComponent } from '../../../features/announces/components/list/list.component';
+import { AnnounceListComponent } from '../../../features/announces/components/list/announce-list.component';
 import { PaginationComponent } from '../../../features/shared/components/pagination/pagination.component';
 import { AnnounceService } from '../../../features/announces/announce.service';
 import { AnnounceDTO } from '../../../models/announce.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
 
 @Component({
-  selector: 'app-announces-index',
+  selector: 'app-announces-index-layout',
   standalone: true,
   imports: [CommonModule, AnnounceListComponent, PaginationComponent],
-  templateUrl: './index.component.html',
-  styleUrl: './index.component.scss'
+  templateUrl: './announce-index-layout.component.html',
+  styleUrl: './announce-index-layout.component.scss'
 })
-export class AnnouncesIndexComponent implements OnInit {
+export class AnnouncesIndexLayoutComponent implements OnInit {
   announces: AnnounceDTO[] = [];
   initialLoading: boolean = true;  // Show spinner only on first load
   paginating: boolean = false;     // Track pagination loading

@@ -1,13 +1,15 @@
 // Color palette
 $colorPrimary: #394357;
-$colorSecondary: #5B768B;
-$colorTertiary: #FAF4E9;
+$colorSecondary: #5b768b;
+$colorTertiary: #faf4e9;
 $colorBackdrop: #000000;
 $colorInteractiveInactive: #e8dca8ff;
-$colorInteractiveActive: #FFD900;
-$colorDanger: #C63022;
-$colorPositive: #28A745;
+$colorInteractiveActive: #ffd900;
+$colorDanger: #ff6969;
+$colorPositive: #28a745;
 $colorWarning: #ff9d00;
+
+$boxShadow: 0 4px 8px rgba($colorBackdrop, 0.2);
 
 // Spacing/Padding
 $padding-xl: 2rem;
@@ -17,8 +19,8 @@ $padding-s: 0.75rem;
 $padding-xs: 0.5rem;
 
 // border radius
-$border-radius-s: .25rem;  
-$border-radius-m: .5rem;
+$border-radius-s: 0.25rem;
+$border-radius-m: 0.5rem;
 $border-radius-l: 1rem;
 
 // Font sizes

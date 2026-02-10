@@ -1,0 +1,90 @@
+@use "styles/variables" as *;
+
+.details-content {
+  border-radius: 8px;
+  padding: $padding-l;
+  box-shadow: 0 2px 8px rgba($colorBackdrop, 0.1);
+}
+
+.details-title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-boldest;
+  text-align: center;
+  margin-bottom: $padding-l;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $padding-l;
+}
+
+.info-section {
+  padding: $padding-m;
+  background-color: rgba($colorSecondary, 0.05);
+  border-radius: 6px;
+
+  h2 {
+    font-size: $font-size-l;
+    font-weight: $font-weight-boldest;
+    margin-bottom: $padding-m;
+    border-bottom: 2px solid $colorInteractiveActive;
+    padding-bottom: $padding-xs;
+  }
+}
+
+.status-control {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-m;
+}
+
+.current-status {
+  display: flex;
+  align-items: center;
+  gap: $padding-s;
+}
+
+.status-actions {
+  position: relative;
+}
+
+.status-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: $padding-xs;
+  background-color: white;
+  border: 1px solid $colorSecondary;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba($colorBackdrop, 0.15);
+  z-index: 100;
+  min-width: 180px;
+
+  &-item {
+    display: block;
+    width: 100%;
+    padding: $padding-s $padding-m;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-m;
+    color: $colorPrimary;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($colorInteractiveActive, 0.1);
+    }
+
+    &:first-child {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+}
