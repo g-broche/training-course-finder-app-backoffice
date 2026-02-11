@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Users</h1>
+    @if (totalElements > 0) {
+      <p>{{ totalElements }} total user{{ totalElements !== 1 ? "s" : "" }}</p>
+    }
+  </div>
+
+  <app-user-list [users]="users" [loading]="initialLoading"> </app-user-list>
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [disabled]="paginating"
+    (pageChange)="goToPage($event)"
+  >
+  </app-pagination>
+</div>

@@ -1,17 +1,19 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DetailedDiscussionDTO } from '../../../../models/discussion.model';
-import { InteractivityState, InteractivityStateChip } from '../../../../models/app.model';
+import { InteractivityState } from '../../../../models/app.model';
 import { AppLinkLabelComponent } from '../../../shared/components/app-link-label/app-link-label.component';
-import { ChipComponent } from '../../../shared/components/chip/chip.component';
 import { DropdownMenuComponent, DropdownMenuItem } from '../../../shared/components/dropdown-menu/dropdown-menu.component';
+import { InteractivityChipComponent } from '../../../shared/components/chips/interactivity-chip/interactivity-chip.component';
+import { ReportedMessageChipComponent } from '../../../shared/components/chips/reported-message-chip/reported-message-chip.component';
 
 @Component({
   selector: 'app-discussion-details',
   standalone: true,
   imports: [
     AppLinkLabelComponent,
-    ChipComponent,
-    DropdownMenuComponent
+    DropdownMenuComponent,
+    InteractivityChipComponent,
+    ReportedMessageChipComponent
   ],
   templateUrl: './discussion-details.component.html',
   styleUrl: './discussion-details.component.scss'
@@ -22,9 +24,6 @@ export class DiscussionDetailsComponent {
   @Input() availableInteractivities: InteractivityState[] = [];
 
   @Output() interactivityChanged = new EventEmitter<InteractivityState>();
-
-  // Expose enum for template usage
-  readonly InteractivityStateChip = InteractivityStateChip;
 
   get interactivityMenuItems(): DropdownMenuItem<InteractivityState>[] {
     return this.availableInteractivities.map(state => ({

@@ -4,6 +4,7 @@ import { AnnouncesIndexLayoutComponent } from './layouts/announces/index/announc
 import { AnnounceDetailsLayoutComponent } from './layouts/announces/details/announce-details-layout.component';
 import { DiscussionsIndexComponent } from './layouts/discussions/index/discussion-index.component';
 import { DiscussionDetailsLayoutComponent } from './layouts/discussions/details/discussion-details-layout.component';
+import { UsersIndexComponent } from './layouts/users/index/user-index.component';
 import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
@@ -29,6 +30,11 @@ export const routes: Routes = [
   {
     path: 'discussions/:id',
     component: DiscussionDetailsLayoutComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'users',
+    component: UsersIndexComponent,
     canActivate: [authGuard]
   },
   {

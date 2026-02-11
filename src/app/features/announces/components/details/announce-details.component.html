@@ -31,10 +31,7 @@
       </div>
       <div class="info-row-button">
         <span>Type:</span>
-        <app-chip
-          [label]="announce.type"
-          [type]="AnnounceTypeChip[announce.type]"
-        />
+        <app-announce-type-chip [announceType]="announce.type" />
         <app-dropdown-menu
           buttonLabel="Change value"
           loadingLabel="Updating..."
@@ -45,10 +42,7 @@
       </div>
       <div class="info-row-button">
         <span>Status:</span>
-        <app-chip
-          [label]="announce.status"
-          [type]="AnnounceStatusChip[announce.status]"
-        />
+        <app-announce-status-chip [announceStatus]="announce.status" />
         <app-dropdown-menu
           buttonLabel="Change value"
           loadingLabel="Updating..."
@@ -59,9 +53,8 @@
       </div>
       <div class="info-row-button">
         <span>Interactivity:</span>
-        <app-chip
-          [label]="announce.interactivityState"
-          [type]="InteractivityStateChip[announce.interactivityState]"
+        <app-interactivity-chip
+          [interactivityState]="announce.interactivityState"
         />
         <app-dropdown-menu
           buttonLabel="Change value"
@@ -73,10 +66,7 @@
       </div>
       <div class="info-row-button">
         <span>Visibility Status:</span>
-        <app-chip
-          [label]="announce.recordStatus"
-          [type]="RecordStatusChip[announce.recordStatus]"
-        />
+        <app-record-status-chip [recordStatus]="announce.recordStatus" />
 
         <app-dropdown-menu
           buttonLabel="Change value"

@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AnnounceDTO } from '../../../../models/announce.model';
 import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
-import { ChipComponent } from '../../../shared/components/chip/chip.component';
 import { AppRouterButtonComponent } from '../../../shared/components/app-router-button/app-router-button.component';
+import { AnnounceTypeChipComponent } from '../../../shared/components/chips/announce-type-chip/announce-type-chip.component';
+import { RecordStatusChipComponent } from '../../../shared/components/chips/record-status-chip/record-status-chip.component';
 
 @Component({
   selector: 'app-announce-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingSpinnerComponent, ChipComponent, AppRouterButtonComponent],
+  imports: [CommonModule, RouterModule, LoadingSpinnerComponent, AppRouterButtonComponent, AnnounceTypeChipComponent, RecordStatusChipComponent],
   templateUrl: './announce-list.component.html',
   styleUrl: './announce-list.component.scss'
 })
@@ -24,22 +25,5 @@ export class AnnounceListComponent {
       month: 'short', 
       day: 'numeric' 
     });
-  }
-
-  getTypeChipType(type: string): 'positive' | 'warning' {
-    return type === 'lost' ? 'warning' : 'positive';
-  }
-
-  getStatusChipType(status: string): 'positive' | 'warning' | 'danger' {
-    switch (status) {
-      case 'shown':
-        return 'positive';
-      case 'hidden':
-        return 'warning';
-      case 'to delete':
-        return 'danger';
-      default:
-        return 'warning';
-    }
   }
 }

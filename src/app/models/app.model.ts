@@ -2,8 +2,10 @@ export type AnnounceType = "lost" | "found";
 export type AnnounceStatus = "solved" | "unsolved";
 export type InteractivityState = "open" | "close";
 export type RecordStatus = "shown" | "hidden" | "to delete";
+export type Role = "user" | "admin";
+export type UserStatus = "allowed" | "banned";
 
-export type ChipType = 'positive' | 'warning' | 'danger' | 'neutral';
+export type ChipType = 'positive' | 'warning' | 'danger' | 'neutral' | 'fail';
 
 export enum AnnounceTypeChip {
   lost = 'warning',

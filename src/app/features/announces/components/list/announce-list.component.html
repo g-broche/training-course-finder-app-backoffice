@@ -35,10 +35,9 @@
             </span>
           </div>
           <div class="grid-cell center-cell">
-            <app-chip
-              [label]="announce.type"
-              [type]="getTypeChipType(announce.type)"
-            ></app-chip>
+            <app-announce-type-chip
+              [announceType]="announce.type"
+            ></app-announce-type-chip>
           </div>
           <div class="grid-cell center-cell">
             @if (announce.photo) {
@@ -52,10 +51,9 @@
             }
           </div>
           <div class="grid-cell center-cell">
-            <app-chip
-              [label]="announce.recordStatus"
-              [type]="getStatusChipType(announce.recordStatus)"
-            ></app-chip>
+            <app-record-status-chip
+              [recordStatus]="announce.recordStatus"
+            ></app-record-status-chip>
           </div>
           <div class="grid-cell center-cell">
             <app-router-button

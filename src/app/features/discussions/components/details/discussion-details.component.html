@@ -31,9 +31,8 @@
       </div>
       <div class="info-row-button">
         <span class="info-label">Interactivity:</span>
-        <app-chip
-          [label]="discussion.interactivityStateName"
-          [type]="InteractivityStateChip[discussion.interactivityStateName]"
+        <app-interactivity-chip
+          [interactivityState]="discussion.interactivityStateName"
         />
         <app-dropdown-menu
           buttonLabel="Change value"
@@ -45,10 +44,9 @@
       </div>
       <div class="info-row">
         <span class="info-label">Has Report:</span>
-        <app-chip
-          label="{{ discussion.hasReportedMessage ? 'yes' : 'No' }}"
-          [type]="discussion.hasReportedMessage ? 'danger' : 'positive'"
-        ></app-chip>
+        <app-reported-message-chip
+          [hasReportedMessage]="discussion.hasReportedMessage"
+        />
       </div>
     </div>
 

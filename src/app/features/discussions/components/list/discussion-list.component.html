@@ -33,9 +33,9 @@
             </span>
           </div>
           <div class="grid-cell center-cell">
-            @if (discussion.hasReportedMessage) {
-              <app-chip label="Yes" type="danger"></app-chip>
-            }
+            <app-reported-message-chip
+              [hasReportedMessage]="discussion.hasReportedMessage"
+            />
           </div>
           <div class="grid-cell title-cell start-cell">
             <app-link-label

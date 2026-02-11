@@ -1,0 +1,33 @@
+@use "sass:color";
+@use "styles/variables" as *;
+
+.chip {
+  display: inline-block;
+  padding: $padding-xs $padding-s;
+  border-radius: $border-radius-m;
+  font-size: $font-size-s;
+  font-weight: $font-weight-bolder;
+  text-align: center;
+  white-space: nowrap;
+
+  &-positive {
+    background-color: $colorPositive;
+  }
+
+  &-warning {
+    background-color: $colorWarning;
+  }
+
+  &-danger {
+    background-color: $colorDanger;
+  }
+
+  &-neutral {
+    background-color: $colorSecondary;
+  }
+
+  &-fail {
+    background-color: $colorSecondary;
+    outline: 2px solid $colorDanger;
+  }
+}

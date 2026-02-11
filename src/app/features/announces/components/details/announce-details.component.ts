@@ -1,17 +1,23 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AnnounceDTO } from '../../../../models/announce.model';
-import { AnnounceStatus, AnnounceType, InteractivityState, RecordStatus, AnnounceTypeChip, AnnounceStatusChip, RecordStatusChip, InteractivityStateChip } from '../../../../models/app.model';
-import { ChipComponent } from '../../../shared/components/chip/chip.component';
+import { AnnounceStatus, AnnounceType, InteractivityState, RecordStatus } from '../../../../models/app.model';
 import { AppLinkLabelComponent } from '../../../shared/components/app-link-label/app-link-label.component';
 import { DropdownMenuComponent, DropdownMenuItem } from '../../../shared/components/dropdown-menu/dropdown-menu.component';
+import { AnnounceTypeChipComponent } from '../../../shared/components/chips/announce-type-chip/announce-type-chip.component';
+import { AnnounceStatusChipComponent } from '../../../shared/components/chips/announce-status-chip/announce-status-chip.component';
+import { InteractivityChipComponent } from '../../../shared/components/chips/interactivity-chip/interactivity-chip.component';
+import { RecordStatusChipComponent } from '../../../shared/components/chips/record-status-chip/record-status-chip.component';
 
 @Component({
   selector: 'app-announce-details',
   standalone: true,
   imports: [
     AppLinkLabelComponent,
-    ChipComponent,
-    DropdownMenuComponent
+    DropdownMenuComponent,
+    AnnounceTypeChipComponent,
+    AnnounceStatusChipComponent,
+    InteractivityChipComponent,
+    RecordStatusChipComponent
   ],
   templateUrl: './announce-details.component.html',
   styleUrl: './announce-details.component.scss'
@@ -31,12 +37,6 @@ export class AnnounceDetailsComponent {
   @Output() statusChanged = new EventEmitter<AnnounceStatus>();
   @Output() interactivityChanged = new EventEmitter<InteractivityState>();
   @Output() visibilityChanged = new EventEmitter<RecordStatus>();
-
-  // Expose enums for template usage
-  readonly AnnounceTypeChip = AnnounceTypeChip;
-  readonly AnnounceStatusChip = AnnounceStatusChip;
-  readonly RecordStatusChip = RecordStatusChip;
-  readonly InteractivityStateChip = InteractivityStateChip;
 
   get typeMenuItems(): DropdownMenuItem<AnnounceType>[] {
     return this.availableTypes.map(type => ({
