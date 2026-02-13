@@ -1,0 +1,63 @@
+@use "styles/variables" as *;
+
+.filter-section {
+  background-color: $colorSecondary;
+  padding: $padding-l;
+  border-radius: $border-radius-m;
+  margin-bottom: $padding-l;
+  box-shadow: $boxShadow;
+
+  h3 {
+    color: $colorTertiary;
+    margin-bottom: $padding-m;
+    font-size: $font-size-l;
+    font-weight: $font-weight-bolder;
+  }
+
+  .filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-m;
+
+    .filter-inputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: $padding-m;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: $padding-xs;
+
+        label {
+          font-weight: $font-weight-bolder;
+          color: $colorTertiary;
+          font-size: $font-size-s;
+        }
+
+        input {
+          padding: $padding-s;
+          border-radius: $border-radius-s;
+          border: none;
+          background-color: $colorTertiary;
+          color: $colorPrimary;
+          font-size: $font-size-m;
+
+          &:focus {
+            outline: 2px solid $colorInteractiveActive;
+          }
+
+          &::placeholder {
+            color: lighten($colorPrimary, 30%);
+          }
+        }
+      }
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: $padding-m;
+      flex-wrap: wrap;
+    }
+  }
+}

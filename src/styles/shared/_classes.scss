@@ -56,6 +56,9 @@
 .container {
   margin: 0 auto;
   padding: $padding-m;
+  display: flex;
+  flex-direction: column;
+  gap: $padding-l;
 }
 
 .surface {
@@ -91,7 +94,8 @@
   color: $colorTertiary;
 }
 .btn-neutral {
-  background-color: $colorSecondary;
+  color: $colorTertiary;
+  background-color: $colorNeutral;
 }
 .btn-action {
   background-color: $colorInteractiveActive;
@@ -133,7 +137,6 @@
 }
 
 .page-header {
-  margin-bottom: $padding-l;
   padding-bottom: $padding-m;
   border-bottom: 2px solid $colorSecondary;
 }

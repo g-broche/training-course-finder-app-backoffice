@@ -24,6 +24,7 @@ export class DiscussionsIndexComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
   orderBy: 'createdDate' | 'lastMessageDate' = 'createdDate';
+  onlyReported: boolean = false;
 
   constructor(private discussionService: DiscussionService, private notificationService: NotificationService) {}
 
@@ -43,7 +44,8 @@ export class DiscussionsIndexComponent implements OnInit {
       const response: ApiResponse<PaginatedResponse<DiscussionDTO>> = await this.discussionService.getDiscussionsPaginated(
         this.currentPage,
         this.pageSize,
-        this.orderBy
+        this.orderBy,
+        this.onlyReported
       );
       if (!response.success) {
         throw new Error(response.message || 'Failed to load discussions');
@@ -72,7 +74,17 @@ export class DiscussionsIndexComponent implements OnInit {
     this.loadDiscussions();
   }
 
+  toggleReported(): void {
+    this.onlyReported = !this.onlyReported;
+    this.currentPage = 0; // Reset to first page when changing filter
+    this.loadDiscussions();
+  }
+
   getOrderByLabel(): string {
     return this.orderBy === 'createdDate' ? 'Creation Date' : 'Latest Message';
+  }
+
+  getReportedFilterLabel(): string {
+    return this.onlyReported ? 'Show All' : 'Only Reported';
   }
 }

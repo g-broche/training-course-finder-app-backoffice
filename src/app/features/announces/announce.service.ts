@@ -14,13 +14,30 @@ export class AnnounceService {
    * Gets paginated list of announces
    * @param page Page number (0-indexed)
    * @param size Number of items per page
+   * @param title Optional filter by title
+   * @param city Optional filter by city
+   * @param categoryId Optional filter by category ID
    * @returns Paginated response with announces
    */
-  async getAnnouncesPaginated(page: number = 0, size: number = 20): Promise<ApiResponse<PaginatedResponse<AnnounceDTO>>> {
+  async getAnnouncesPaginated(
+    page: number = 0, 
+    size: number = 20, 
+    title?: string, 
+    city?: string,
+    categoryId?: number
+  ): Promise<ApiResponse<PaginatedResponse<AnnounceDTO>>> {
     try {
-      const response = await this.apiService.get<ApiResponse<PaginatedResponse<AnnounceDTO>>>(
-        `/api/admin/announces/paginated?page=${page}&size=${size}`
-      );
+      let url = `/api/admin/announces/paginated?page=${page}&size=${size}`;
+      if (title && title.trim()) {
+        url += `&title=${encodeURIComponent(title.trim())}`;
+      }
+      if (city && city.trim()) {
+        url += `&city=${encodeURIComponent(city.trim())}`;
+      }
+      if (categoryId !== undefined && categoryId !== null) {
+        url += `&categoryId=${categoryId}`;
+      }
+      const response = await this.apiService.get<ApiResponse<PaginatedResponse<AnnounceDTO>>>(url);
       return response;
     } catch (error) {
       console.error('Failed to fetch announces:', error);

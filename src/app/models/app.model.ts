@@ -36,5 +36,5 @@ export interface Notification {
   id: string;
   message: string;
   type: NotificationType;
-  duration?: number; // milliseconds, default 5000
+  duration?: number;
 }

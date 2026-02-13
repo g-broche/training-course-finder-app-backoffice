@@ -2,19 +2,74 @@
   <div class="page-header">
     <h1>Announces</h1>
     @if (totalElements > 0) {
-      <p>{{ totalElements }} total announce{{ totalElements !== 1 ? 's' : '' }}</p>
+      <p>
+        {{ totalElements }} total announce{{ totalElements !== 1 ? "s" : "" }}
+      </p>
     }
   </div>
 
-  <app-announce-list 
-    [announces]="announces"
-    [loading]="initialLoading">
+  <form class="filter-form" (ngSubmit)="applyFilters()">
+    <h3>Filters</h3>
+    <div class="filter-inputs">
+      <div class="form-group">
+        <label for="filterTitle">Title</label>
+        <input
+          type="text"
+          id="filterTitle"
+          name="filterTitle"
+          [(ngModel)]="filterTitle"
+          placeholder="Search by title..."
+        />
+      </div>
+      <div class="form-group">
+        <label for="filterCity">City</label>
+        <input
+          type="text"
+          id="filterCity"
+          name="filterCity"
+          [(ngModel)]="filterCity"
+          placeholder="Search by city..."
+        />
+      </div>
+      <div class="form-group">
+        <label for="filterCategory">Category</label>
+        <select
+          id="filterCategory"
+          name="filterCategory"
+          [(ngModel)]="filterCategoryId"
+          [disabled]="categoriesLoading"
+        >
+          <option [ngValue]="null">All categories</option>
+          @for (category of categories; track category.id) {
+            <option [ngValue]="category.id">{{ category.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+    <div class="form-actions">
+      <app-button
+        [label]="'Clear Filters'"
+        [category]="'neutral'"
+        [isDisabled]="initialLoading || paginating"
+        (callback)="clearFilters()"
+      />
+      <app-button
+        [label]="'Apply Filters'"
+        [category]="'action'"
+        [buttonType]="'submit'"
+        [isDisabled]="initialLoading || paginating"
+      />
+    </div>
+  </form>
+
+  <app-announce-list [announces]="announces" [loading]="initialLoading">
   </app-announce-list>
 
   <app-pagination
     [currentPage]="currentPage"
     [totalPages]="totalPages"
     [disabled]="paginating"
-    (pageChange)="goToPage($event)">
+    (pageChange)="goToPage($event)"
+  >
   </app-pagination>
 </div>

@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AnnounceListComponent } from '../../../features/announces/components/list/announce-list.component';
 import { PaginationComponent } from '../../../features/shared/components/pagination/pagination.component';
+import { AppButtonComponent } from '../../../features/shared/components/app-button/app-button.component';
 import { AnnounceService } from '../../../features/announces/announce.service';
+import { CategoryService } from '../../../features/categories/category.service';
 import { AnnounceDTO } from '../../../models/announce.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
 import { NotificationService } from '../../../features/shared/services/notification.service';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-announces-index-layout',
   standalone: true,
-  imports: [CommonModule, AnnounceListComponent, PaginationComponent],
+  imports: [CommonModule, FormsModule, AnnounceListComponent, PaginationComponent, AppButtonComponent],
   templateUrl: './announce-index-layout.component.html',
   styleUrl: './announce-index-layout.component.scss'
 })
@@ -22,11 +26,39 @@ export class AnnouncesIndexLayoutComponent implements OnInit {
   pageSize: number = 10;
   totalPages: number = 0;
   totalElements: number = 0;
+  
+  // Filter properties
+  filterTitle: string = '';
+  filterCity: string = '';
+  filterCategoryId: number | null = null;
+  
+  // Categories
+  categories: Category[] = [];
+  categoriesLoading: boolean = true;
 
-  constructor(private announceService: AnnounceService, private notificationService: NotificationService) {}
+  constructor(
+    private announceService: AnnounceService,
+    private categoryService: CategoryService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
+    this.loadCategories();
     this.loadAnnounces();
+  }
+
+  async loadCategories(): Promise<void> {
+    try {
+      const response: ApiResponse<Category[]> = await this.categoryService.getCategories();
+      if (!response.success) {
+        throw new Error(response.message || 'Failed to load categories');
+      }
+      this.categories = response.data || [];
+    } catch (error) {
+      this.notificationService.showError('Failed to load categories filter');
+    } finally {
+      this.categoriesLoading = false;
+    }
   }
 
   async loadAnnounces(): Promise<void> {
@@ -40,7 +72,10 @@ export class AnnouncesIndexLayoutComponent implements OnInit {
     try {
       const response: ApiResponse<PaginatedResponse<AnnounceDTO>> = await this.announceService.getAnnouncesPaginated(
         this.currentPage,
-        this.pageSize
+        this.pageSize,
+        this.filterTitle,
+        this.filterCity,
+        this.filterCategoryId !== null ? this.filterCategoryId : undefined
       );
       if (!response.success) {
         throw new Error(response.message || 'Failed to load announces');
@@ -55,6 +90,19 @@ export class AnnouncesIndexLayoutComponent implements OnInit {
       this.initialLoading = false;
       this.paginating = false;
     }
+  }
+
+  applyFilters(): void {
+    this.currentPage = 0;
+    this.loadAnnounces();
+  }
+  
+  clearFilters(): void {
+    this.filterTitle = '';
+    this.filterCity = '';
+    this.filterCategoryId = null;
+    this.currentPage = 0;
+    this.loadAnnounces();
   }
 
   goToPage(page: number): void {

@@ -8,6 +8,7 @@
       <div class="grid-header">
         <div class="grid-cell start-cell">Created</div>
         <div class="grid-cell start-cell">Author</div>
+        <div class="grid-cell start-cell">Title</div>
         <div class="grid-cell start-cell">Category</div>
         <div class="grid-cell center-cell">Type</div>
         <div class="grid-cell center-cell">Photo</div>
@@ -28,6 +29,11 @@
             >
               {{ announce.author.displayName }}
             </a>
+          </div>
+          <div class="grid-cell start-cell">
+            <span class="text-truncate">
+              {{ announce.title }}
+            </span>
           </div>
           <div class="grid-cell start-cell">
             <span class="text-truncate">

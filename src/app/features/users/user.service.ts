@@ -16,13 +16,20 @@ export class UserService {
    * Gets paginated list of users
    * @param page Page number (0-indexed)
    * @param size Number of items per page
+   * @param displayName Optional filter by displayName
    * @returns Paginated response with users
    */
-  async getUsersPaginated(page: number = 0, size: number = 20): Promise<ApiResponse<PaginatedResponse<UserDTO>>> {
+  async getUsersPaginated(
+    page: number = 0, 
+    size: number = 20, 
+    displayName?: string
+  ): Promise<ApiResponse<PaginatedResponse<UserDTO>>> {
     try {
-      const response = await this.apiService.get<ApiResponse<PaginatedResponse<UserDTO>>>(
-        `/api/admin/users/paginated?page=${page}&size=${size}`
-      );
+      let url = `/api/admin/users/paginated?page=${page}&size=${size}`;
+      if (displayName && displayName.trim()) {
+        url += `&displayName=${encodeURIComponent(displayName.trim())}`;
+      }
+      const response = await this.apiService.get<ApiResponse<PaginatedResponse<UserDTO>>>(url);
       return response;
     } catch (error) {
       console.error('Failed to fetch users:', error);

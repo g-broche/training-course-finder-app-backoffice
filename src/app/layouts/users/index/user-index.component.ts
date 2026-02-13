@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { UserListComponent } from '../../../features/users/components/list/user-list.component';
 import { PaginationComponent } from '../../../features/shared/components/pagination/pagination.component';
+import { AppButtonComponent } from '../../../features/shared/components/app-button/app-button.component';
 import { UserService } from '../../../features/users/user.service';
 import { UserDTO } from '../../../models/user.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
@@ -10,7 +12,7 @@ import { NotificationService } from '../../../features/shared/services/notificat
 @Component({
   selector: 'app-users-index',
   standalone: true,
-  imports: [CommonModule, UserListComponent, PaginationComponent],
+  imports: [CommonModule, FormsModule, UserListComponent, PaginationComponent, AppButtonComponent],
   templateUrl: './user-index.component.html',
   styleUrl: './user-index.component.scss'
 })
@@ -22,6 +24,9 @@ export class UsersIndexComponent implements OnInit {
   pageSize: number = 10;
   totalPages: number = 0;
   totalElements: number = 0;
+  
+  // Filter property
+  filterDisplayName: string = '';
 
   constructor(private userService: UserService, private notificationService: NotificationService) {}
 
@@ -39,7 +44,8 @@ export class UsersIndexComponent implements OnInit {
     try {
       const response: ApiResponse<PaginatedResponse<UserDTO>> = await this.userService.getUsersPaginated(
         this.currentPage,
-        this.pageSize
+        this.pageSize,
+        this.filterDisplayName
       );
       if (!response.success) {
         throw new Error(response.message || 'Failed to load users');
@@ -53,6 +59,17 @@ export class UsersIndexComponent implements OnInit {
       this.initialLoading = false;
       this.paginating = false;
     }
+  }
+
+  applyFilter(): void {
+    this.currentPage = 0; // Reset to first page when applying filter
+    this.loadUsers();
+  }
+  
+  clearFilter(): void {
+    this.filterDisplayName = '';
+    this.currentPage = 0;
+    this.loadUsers();
   }
 
   goToPage(page: number): void {

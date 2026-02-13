@@ -20,6 +20,15 @@
           (callback)="toggleOrderBy()"
         />
       </div>
+      <div>
+        <span>Filter:</span>
+        <app-button
+          [label]="getReportedFilterLabel()"
+          [category]="'action'"
+          [isDisabled]="initialLoading || paginating"
+          (callback)="toggleReported()"
+        />
+      </div>
     </div>
   </div>
 
