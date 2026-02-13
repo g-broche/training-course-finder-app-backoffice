@@ -61,7 +61,6 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
         this.notificationService.showError(errorMessage);
       }
     } catch (error) {
-        console.error('Error loading announce:', error);
         const errorMessage = 'Failed to load announce details'
         this.error = errorMessage;
         this.notificationService.showError(errorMessage);
@@ -78,14 +77,12 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
     try {
       const updateResponse = await this.announceService.updateType(this.announce.id, newType);
       if (!updateResponse.success) {
-        console.error('Error updating type:', updateResponse.message);
         this.notificationService.showError('Failed to update type');
         return;
       }
       this.announce = updateResponse.data!;
       this.notificationService.showSuccess(`Type updated to "${newType}"`);
     } catch (error) {
-      console.error('Error updating type:', error);
       this.notificationService.showError('Failed to update type');
     } finally {
       this.isUpdatingType = false;
@@ -100,14 +97,12 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
     try {
       const updateResponse = await this.announceService.updateStatus(this.announce.id, newStatus);
       if (!updateResponse.success) {
-        console.error('Error updating status:', updateResponse.message);
         this.notificationService.showError('Failed to update status');
         return;
       }
       this.announce = updateResponse.data!;
       this.notificationService.showSuccess(`Status updated to "${newStatus}"`);
     } catch (error) {
-      console.error('Error updating status:', error);
       this.notificationService.showError('Failed to update status');
     } finally {
       this.isUpdatingStatus = false;
@@ -122,14 +117,12 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
     try {
       const updateResponse = await this.announceService.updateInteractivityState(this.announce.id, newState);
       if (!updateResponse.success) {
-        console.error('Error updating interactivity state:', updateResponse.message);
         this.notificationService.showError('Failed to update interactivity state');
         return;
       }
       this.announce = updateResponse.data!;
       this.notificationService.showSuccess(`Interactivity updated to "${newState}"`);
     } catch (error) {
-      console.error('Error updating interactivity state:', error);
       this.notificationService.showError('Failed to update interactivity state');
     } finally {
       this.isUpdatingInteractivity = false;
@@ -144,14 +137,12 @@ export class AnnounceDetailsLayoutComponent implements OnInit {
     try {
       const updateResponse = await this.announceService.updateRecordStatus(this.announce.id, newStatus);
       if (!updateResponse.success) {
-        console.error('Error updating record status:', updateResponse.message);
         this.notificationService.showError('Failed to update record status');
         return;
       }
       this.announce = updateResponse.data!;
       this.notificationService.showSuccess(`Visibility updated to "${newStatus}"`);
     } catch (error) {
-      console.error('Error updating record status:', error);
       this.notificationService.showError('Failed to update record status');
     } finally {
       this.isUpdatingVisibility = false;

@@ -16,7 +16,7 @@ export class MessageCardComponent {
   @Input({ required: true }) isAnnounceCreator!: boolean;
   @Input() asChatMessage: boolean = false;
 
-  formatDate(dateString: string): string {
-    return toLongDateString(dateString);
+  formatDate(date: string): string {
+    return toLongDateString(date);
   }
 }

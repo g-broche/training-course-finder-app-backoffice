@@ -13,34 +13,6 @@
   }
 }
 
-.info-grid {
-  display: grid;
-  gap: $padding-l;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.info-row {
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  margin-bottom: $padding-s;
-  align-items: center;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.info-row-button {
-  display: grid;
-  grid-template-columns: 8rem 1fr 1fr;
-  align-items: center;
-  margin-bottom: $padding-s;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
 .info-label {
   font-weight: $font-weight-bolder;
   color: $colorSecondary;

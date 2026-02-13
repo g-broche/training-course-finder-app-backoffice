@@ -62,7 +62,6 @@ export class DiscussionDetailsLayoutComponent implements OnInit {
         this.notificationService.showError(this.error);
       }
     } catch (error) {
-      console.error('Error loading discussion:', error);
       this.error = 'An error occurred while loading the discussion';
       this.notificationService.showError(this.error);
     } finally {
@@ -78,14 +77,12 @@ export class DiscussionDetailsLayoutComponent implements OnInit {
     try {
       const updateResponse = await this.discussionService.updateInteractivityState(this.discussion.discussionId, newState);
       if (!updateResponse.success) {
-        console.error('Error updating interactivity state:', updateResponse.message);
         this.notificationService.showError('Failed to update interactivity state');
         return;
       }
       this.discussion = updateResponse.data!;
       this.notificationService.showSuccess(`Interactivity updated to "${newState}"`);
     } catch (error) {
-      console.error('Error updating interactivity state:', error);
       this.notificationService.showError('Failed to update interactivity state');
     } finally {
       this.isUpdatingInteractivity = false;

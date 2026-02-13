@@ -1,0 +1,119 @@
+<div class="details-content surface">
+  <h1 class="details-title">{{ user.displayName }}</h1>
+
+  <div class="info-grid">
+    <div class="info-section">
+      <h2>Basic Information</h2>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>ID:</span>
+          <span>{{ user.id }}</span>
+        </div>
+        <div class="info-row">
+          <span>Display Name:</span>
+          <span>{{ user.displayName }}</span>
+        </div>
+        <div class="info-row">
+          <span>Last name:</span>
+          <span>{{ user.lastName }}</span>
+        </div>
+        <div class="info-row">
+          <span>First Name:</span>
+          <span>{{ user.firstName }}</span>
+        </div>
+        <div class="info-row">
+          <span>Email:</span>
+          <span>{{ user.email }}</span>
+        </div>
+        <div class="info-row">
+          <span>Created At:</span>
+          <span>{{ formatDate(user.createdAt) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>Status Information</h2>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>User Status:</span>
+          <app-user-status-chip [userStatus]="user.status" />
+        </div>
+        <div class="info-row">
+          <span>Verified:</span>
+          <app-verified-chip [isVerified]="user.isVerified" />
+        </div>
+        <div class="info-row">
+          <span>GDPR Accepted:</span>
+          <app-gdpr-chip [hasAcceptedGdpr]="user.hasAcceptedGdpr" />
+        </div>
+        <div class="info-row">
+          <span>Roles:</span>
+          <div class="chip-row">
+            @for (role of user.roles; track role) {
+              <app-user-role-chip [role]="role" />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>Manage Roles</h2>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>Current roles:</span>
+          <div class="chip-row">
+            @for (role of user.roles; track role) {
+              <app-user-role-chip [role]="role" />
+            }
+          </div>
+        </div>
+        @if (isUserAdmin) {
+          <app-button
+            label="Revoke admin role"
+            [isDisabled]="isUpdatingRoles"
+            loadingLabel="Updating..."
+            category="action"
+            (click)="handleRevokeAdminRole()"
+          />
+        } @else {
+          <app-button
+            label="Promote to admin"
+            [isDisabled]="isUpdatingRoles"
+            loadingLabel="Updating..."
+            category="action"
+            (click)="handlePromoteToAdmin()"
+          />
+        }
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>Manage Status</h2>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>Current status:</span>
+          <app-user-status-chip [userStatus]="user.status" />
+        </div>
+        @if (isUserBanned) {
+          <app-button
+            label="Unban this user"
+            [isDisabled]="isUpdatingStatus"
+            loadingLabel="Updating..."
+            category="action"
+            (click)="handleUnbanUser()"
+          />
+        } @else {
+          <app-button
+            label="Ban this user"
+            [isDisabled]="isUpdatingStatus"
+            loadingLabel="Updating..."
+            category="action"
+            (click)="handleBanUser()"
+          />
+        }
+      </div>
+    </div>
+  </div>
+</div>

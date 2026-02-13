@@ -5,6 +5,7 @@ import { AnnounceDetailsLayoutComponent } from './layouts/announces/details/anno
 import { DiscussionsIndexComponent } from './layouts/discussions/index/discussion-index.component';
 import { DiscussionDetailsLayoutComponent } from './layouts/discussions/details/discussion-details-layout.component';
 import { UsersIndexComponent } from './layouts/users/index/user-index.component';
+import { UserDetailsLayoutComponent } from './layouts/users/details/user-details-layout.component';
 import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: 'users',
     component: UsersIndexComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'users/:displayName',
+    component: UserDetailsLayoutComponent,
     canActivate: [authGuard]
   },
   {

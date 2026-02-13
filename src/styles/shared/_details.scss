@@ -19,6 +19,29 @@
   gap: $padding-l;
 }
 
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  margin-bottom: $padding-s;
+  align-items: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-row-button {
+  display: grid;
+  grid-template-columns: 8rem 1fr 1fr;
+  align-items: center;
+}
+
 .info-section {
   padding: $padding-m;
   background-color: rgba($colorSecondary, 0.05);

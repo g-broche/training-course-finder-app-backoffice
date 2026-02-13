@@ -1,0 +1,56 @@
+<div class="layout-container">
+  <div class="layout-header">
+    <app-router-button
+      label="Back to Users"
+      [path]="['/users']"
+      type="action"
+    />
+  </div>
+
+  @if (loading) {
+    <div class="loading-state">Loading user details...</div>
+  }
+
+  @if (!loading && user) {
+    <app-user-details
+      [user]="user"
+      [isUpdatingRoles]="isUpdatingRoles"
+      [isUpdatingStatus]="isUpdatingStatus"
+      (promoteToAdmin)="handlePromoteToAdmin()"
+      (revokeAdminRole)="handleRevokeAdminRole()"
+      (banUser)="handleBanUser()"
+      (unbanUser)="handleUnbanUser()"
+    />
+
+    <div class="user-content-section">
+      <h2>User Announces</h2>
+      <app-announce-list [announces]="announces" [loading]="announcesLoading" />
+      @if (announcesTotalPages > 1) {
+        <app-pagination
+          [currentPage]="announcesCurrentPage"
+          [totalPages]="announcesTotalPages"
+          (pageChange)="goToAnnouncesPage($event)"
+        />
+      }
+    </div>
+
+    <div class="user-content-section">
+      <h2>User Discussions</h2>
+      <app-discussion-list
+        [discussions]="discussions"
+        [loading]="discussionsLoading"
+      />
+      @if (discussionsTotalPages > 1) {
+        <app-pagination
+          [currentPage]="discussionsCurrentPage"
+          [totalPages]="discussionsTotalPages"
+          (pageChange)="goToDiscussionsPage($event)"
+        />
+      }
+    </div>
+  }
+
+  @if (!loading && !user) {
+    <div class="error-state">User not found</div>
+  }
+</div>

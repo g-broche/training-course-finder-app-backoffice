@@ -5,6 +5,7 @@ import { PaginationComponent } from '../../../features/shared/components/paginat
 import { AnnounceService } from '../../../features/announces/announce.service';
 import { AnnounceDTO } from '../../../models/announce.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
+import { NotificationService } from '../../../features/shared/services/notification.service';
 
 @Component({
   selector: 'app-announces-index-layout',
@@ -22,7 +23,7 @@ export class AnnouncesIndexLayoutComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-  constructor(private announceService: AnnounceService) {}
+  constructor(private announceService: AnnounceService, private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.loadAnnounces();
@@ -48,8 +49,8 @@ export class AnnouncesIndexLayoutComponent implements OnInit {
       this.totalPages = response!.data!.totalPages;
       this.totalElements = response!.data!.totalElements;
     } catch (error) {
-      console.error('Error loading announces:', error);
-      // TODO: Show error notification
+      this.notificationService.showError('Failed to load announces');
+
     } finally {
       this.initialLoading = false;
       this.paginating = false;

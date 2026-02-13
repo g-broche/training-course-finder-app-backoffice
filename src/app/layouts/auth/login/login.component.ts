@@ -41,9 +41,7 @@ export class LoginComponent {
           this.loginForm.setError(response.message || 'Login failed. Please try again.');
         }
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      
+    } catch (error) {      
       // Show error notification
       this.notificationService.showError('An unexpected error occurred. Please try again.');
       

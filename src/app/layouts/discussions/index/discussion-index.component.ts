@@ -52,7 +52,6 @@ export class DiscussionsIndexComponent implements OnInit {
       this.totalPages = response!.data!.totalPages;
       this.totalElements = response!.data!.totalElements;
     } catch (error) {
-      console.error('Error loading discussions:', error);
       this.notificationService.showError('Failed to load discussions');
     } finally {
       this.initialLoading = false;

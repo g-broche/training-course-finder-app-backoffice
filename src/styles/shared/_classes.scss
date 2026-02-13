@@ -190,3 +190,8 @@
     font-size: $font-size-m;
   }
 }
+
+.chip-row {
+  display: flex;
+  gap: $padding-xs;
+}

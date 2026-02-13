@@ -16,5 +16,5 @@ export interface UserDTO {
   isVerified: boolean;
   hasAcceptedGdpr: boolean;
   hasHadReportedMessages: boolean;
-  createdAt: Date;
+  createdAt: string;
 }

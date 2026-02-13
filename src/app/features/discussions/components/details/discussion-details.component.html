@@ -4,65 +4,69 @@
   <div class="info-grid">
     <div class="info-section">
       <h2>Discussion Information</h2>
-      <div class="info-row">
-        <span class="info-label">Discussion ID:</span>
-        <span>{{ discussion.discussionId }}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Related Announce:</span>
-        <app-link-label
-          [link]="['/announces', discussion.announceId]"
-          [label]="discussion.announceTitle"
-        />
-      </div>
-      <div class="info-row">
-        <span class="info-label">Announce Author:</span>
-        <app-link-label
-          [link]="['/users', discussion.announceAuthor.displayName]"
-          [label]="discussion.announceAuthor.displayName"
-        />
-      </div>
-      <div class="info-row">
-        <span class="info-label">Interlocutor:</span>
-        <app-link-label
-          [link]="['/users', discussion.announceResponder.displayName]"
-          [label]="discussion.announceResponder.displayName"
-        />
-      </div>
-      <div class="info-row-button">
-        <span class="info-label">Interactivity:</span>
-        <app-interactivity-chip
-          [interactivityState]="discussion.interactivityStateName"
-        />
-        <app-dropdown-menu
-          buttonLabel="Change value"
-          loadingLabel="Updating..."
-          [isLoading]="isUpdatingInteractivity"
-          [menuItems]="interactivityMenuItems"
-          (itemSelected)="handleInteractivityChange($event)"
-        />
-      </div>
-      <div class="info-row">
-        <span class="info-label">Has Report:</span>
-        <app-reported-message-chip
-          [hasReportedMessage]="discussion.hasReportedMessage"
-        />
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span class="info-label">Discussion ID:</span>
+          <span>{{ discussion.discussionId }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Related Announce:</span>
+          <app-link-label
+            [link]="['/announces', discussion.announceId]"
+            [label]="discussion.announceTitle"
+          />
+        </div>
+        <div class="info-row">
+          <span class="info-label">Announce Author:</span>
+          <app-link-label
+            [link]="['/users', discussion.announceAuthor.displayName]"
+            [label]="discussion.announceAuthor.displayName"
+          />
+        </div>
+        <div class="info-row">
+          <span class="info-label">Interlocutor:</span>
+          <app-link-label
+            [link]="['/users', discussion.announceResponder.displayName]"
+            [label]="discussion.announceResponder.displayName"
+          />
+        </div>
+        <div class="info-row-button">
+          <span class="info-label">Interactivity:</span>
+          <app-interactivity-chip
+            [interactivityState]="discussion.interactivityStateName"
+          />
+          <app-dropdown-menu
+            buttonLabel="Change value"
+            loadingLabel="Updating..."
+            [isLoading]="isUpdatingInteractivity"
+            [menuItems]="interactivityMenuItems"
+            (itemSelected)="handleInteractivityChange($event)"
+          />
+        </div>
+        <div class="info-row">
+          <span class="info-label">Has Report:</span>
+          <app-reported-message-chip
+            [hasReportedMessage]="discussion.hasReportedMessage"
+          />
+        </div>
       </div>
     </div>
 
     <div class="info-section">
       <h2>Timeline</h2>
-      <div class="info-row">
-        <span class="info-label">Created At:</span>
-        <span>{{ formatDate(discussion.createdAt) }}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Edited At:</span>
-        <span>{{ formatDate(discussion.editedAt) }}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Last Message:</span>
-        <span>{{ formatDate(discussion.lastMessageDate) }}</span>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span class="info-label">Created At:</span>
+          <span>{{ formatDate(discussion.createdAt) }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Edited At:</span>
+          <span>{{ formatDate(discussion.editedAt) }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Last Message:</span>
+          <span>{{ formatDate(discussion.lastMessageDate) }}</span>
+        </div>
       </div>
     </div>
   </div>

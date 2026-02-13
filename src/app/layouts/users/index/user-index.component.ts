@@ -5,6 +5,7 @@ import { PaginationComponent } from '../../../features/shared/components/paginat
 import { UserService } from '../../../features/users/user.service';
 import { UserDTO } from '../../../models/user.model';
 import { ApiResponse, PaginatedResponse } from '../../../models/api.model';
+import { NotificationService } from '../../../features/shared/services/notification.service';
 
 @Component({
   selector: 'app-users-index',
@@ -22,7 +23,7 @@ export class UsersIndexComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -47,8 +48,7 @@ export class UsersIndexComponent implements OnInit {
       this.totalPages = response!.data!.totalPages;
       this.totalElements = response!.data!.totalElements;
     } catch (error) {
-      console.error('Error loading users:', error);
-      // TODO: Show error notification
+      this.notificationService.showError('Failed to load users');
     } finally {
       this.initialLoading = false;
       this.paginating = false;
