@@ -65,6 +65,21 @@ select {
   }
 }
 
+.filter-section {
+  background-color: $colorSecondary;
+  padding: $padding-l;
+  border-radius: $border-radius-m;
+  margin-bottom: $padding-l;
+  box-shadow: $boxShadow;
+
+  h3 {
+    color: $colorTertiary;
+    margin-bottom: $padding-m;
+    font-size: $font-size-l;
+    font-weight: $font-weight-bolder;
+  }
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px $colorTertiary inset !important;
 }

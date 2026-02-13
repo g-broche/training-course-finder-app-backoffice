@@ -12,6 +12,7 @@ import { UserDTO } from '../../../models/user.model';
 import { AnnounceDTO } from '../../../models/announce.model';
 import { DiscussionDTO } from '../../../models/discussion.model';
 import { Role, UserStatus } from '../../../models/app.model';
+import { LoadingSpinnerComponent } from '../../../features/shared/components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-user-details-layout',
@@ -22,7 +23,8 @@ import { Role, UserStatus } from '../../../models/app.model';
     AnnounceListComponent,
     DiscussionListComponent,
     PaginationComponent,
-    AppRouterButtonComponent
+    AppRouterButtonComponent,
+    LoadingSpinnerComponent
   ],
   templateUrl: './user-details-layout.component.html',
   styleUrl: './user-details-layout.component.scss'

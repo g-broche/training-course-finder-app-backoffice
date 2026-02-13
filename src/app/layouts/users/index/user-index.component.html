@@ -6,37 +6,35 @@
     }
   </div>
 
-  <div class="filter-section">
+  <form class="filter-form" (ngSubmit)="applyFilter()">
     <h3>Filter</h3>
-    <form class="filter-form" (ngSubmit)="applyFilter()">
-      <div class="filter-inputs">
-        <div class="form-group">
-          <label for="filterDisplayName">Display Name</label>
-          <input
-            type="text"
-            id="filterDisplayName"
-            name="filterDisplayName"
-            [(ngModel)]="filterDisplayName"
-            placeholder="Search by display name..."
-          />
-        </div>
-      </div>
-      <div class="filter-actions">
-        <app-button
-          [label]="'Apply Filter'"
-          [category]="'action'"
-          [buttonType]="'submit'"
-          [isDisabled]="initialLoading || paginating"
-        />
-        <app-button
-          [label]="'Clear Filter'"
-          [category]="'neutral'"
-          [isDisabled]="initialLoading || paginating"
-          (callback)="clearFilter()"
+    <div class="filter-inputs">
+      <div class="form-group">
+        <label for="filterDisplayName">Display Name</label>
+        <input
+          type="text"
+          id="filterDisplayName"
+          name="filterDisplayName"
+          [(ngModel)]="filterDisplayName"
+          placeholder="Search by display name..."
         />
       </div>
-    </form>
-  </div>
+    </div>
+    <div class="form-actions">
+      <app-button
+        [label]="'Apply Filter'"
+        [category]="'action'"
+        [buttonType]="'submit'"
+        [isDisabled]="initialLoading || paginating"
+      />
+      <app-button
+        [label]="'Clear Filter'"
+        [category]="'neutral'"
+        [isDisabled]="initialLoading || paginating"
+        (callback)="clearFilter()"
+      />
+    </div>
+  </form>
 
   <app-user-list [users]="users" [loading]="initialLoading"> </app-user-list>
 
