@@ -59,7 +59,7 @@ export class DiscussionService {
    */
   async updateInteractivityState(discussionId: string, newState: InteractivityState): Promise<ApiResponse<DetailedDiscussionDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<DetailedDiscussionDTO>>(`/api/admin/discussions/${discussionId}/interactivity`, { interactivityState: newState });
+      const response = await this.apiService.patch<ApiResponse<DetailedDiscussionDTO>>(`/api/admin/discussions/${discussionId}/interactivity`, { interactivityState: newState });
       return response;
     } catch (error) {
       console.error('Failed to update discussion interactivity state:', error);

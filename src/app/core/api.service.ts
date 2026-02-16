@@ -60,6 +60,23 @@ export class ApiService {
   }
 
   /**
+   * Makes a PATCH request to the API
+   * @param endpoint - The API endpoint path
+   * @param body - The request body
+   */
+  async patch<T>(endpoint: string, body?: any): Promise<T> {
+    const url = this.buildUrl(endpoint);
+    const response = await fetch(url, {
+      method: 'PATCH',
+      headers: this.getHeaders(),
+      credentials: 'include', // Include cookies for JWT
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
+  /**
    * Makes a DELETE request to the API
    * @param endpoint - The API endpoint path
    */

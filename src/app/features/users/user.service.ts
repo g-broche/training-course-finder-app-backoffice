@@ -95,7 +95,7 @@ export class UserService {
 
   async revokeAdminRights(uuid: string): Promise<ApiResponse<UserDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<UserDTO>>(
+      const response = await this.apiService.patch<ApiResponse<UserDTO>>(
         `/api/admin/users/${uuid}/revoke-admin`,
       );
       return response;
@@ -107,7 +107,7 @@ export class UserService {
 
   async promoteToAdmin(uuid: string): Promise<ApiResponse<UserDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<UserDTO>>(
+      const response = await this.apiService.patch<ApiResponse<UserDTO>>(
         `/api/admin/users/${uuid}/promote-admin`,
       );
       return response;
@@ -119,7 +119,7 @@ export class UserService {
 
   async banUser(uuid: string): Promise<ApiResponse<UserDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<UserDTO>>(
+      const response = await this.apiService.patch<ApiResponse<UserDTO>>(
         `/api/admin/users/${uuid}/ban`,
       );
       return response;
@@ -131,7 +131,7 @@ export class UserService {
 
   async unbanUser(uuid: string): Promise<ApiResponse<UserDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<UserDTO>>(
+      const response = await this.apiService.patch<ApiResponse<UserDTO>>(
         `/api/admin/users/${uuid}/unban`,
       );
       return response;

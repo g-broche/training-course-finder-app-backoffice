@@ -67,7 +67,7 @@ export class AnnounceService {
    */
   async updateType(announceId: string, newType: AnnounceType): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/type`, { announceType: newType });
+      const response = await this.apiService.patch<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/type`, { announceType: newType });
       return response;
     } catch (error) {
       console.error('Failed to update announce type:', error);
@@ -82,7 +82,7 @@ export class AnnounceService {
    */
   async updateStatus(announceId: string, newStatus: AnnounceStatus): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/status`, { announceStatus: newStatus });
+      const response = await this.apiService.patch<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/status`, { announceStatus: newStatus });
       return response;
     } catch (error) {
       console.error('Failed to update announce status:', error);
@@ -97,7 +97,7 @@ export class AnnounceService {
    */
   async updateInteractivityState(announceId: string, newState: InteractivityState): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/interactivity`, { interactivityState: newState });
+      const response = await this.apiService.patch<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/interactivity`, { interactivityState: newState });
       return response;
     } catch (error) {
       console.error('Failed to update announce interactivity state:', error);
@@ -112,7 +112,7 @@ export class AnnounceService {
    */
   async updateRecordStatus(announceId: string, newStatus: RecordStatus): Promise<ApiResponse<AnnounceDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/recordstatus`, { recordStatus: newStatus });
+      const response = await this.apiService.patch<ApiResponse<AnnounceDTO>>(`/api/admin/announces/${announceId}/recordstatus`, { recordStatus: newStatus });
       return response;
     } catch (error) {
       console.error('Failed to update announce record status:', error);
