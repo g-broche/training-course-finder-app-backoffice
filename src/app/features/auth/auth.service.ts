@@ -91,6 +91,23 @@ export class AuthService {
   }
 
   /**
+   * Manually refreshes the access token
+   * Note: This is usually handled automatically by ApiService
+   */
+  async refreshToken(): Promise<void> {
+    try {
+      await this.apiService.post('/api/admin/auth/refresh', {});
+      // Tokens are automatically updated via httpOnly cookies
+      console.log('Token refreshed successfully');
+    } catch (error) {
+      console.error('Token refresh failed:', error);
+      // If refresh fails, log out the user
+      await this.logout();
+      throw error;
+    }
+  }
+
+  /**
    * Logs out the user by clearing the JWT cookie and user state
    */
   async logout(): Promise<void> {
