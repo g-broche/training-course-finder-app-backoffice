@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-
-export type ChipType = 'positive' | 'warning' | 'danger' | 'neutral';
+import { ChipType } from '../../../../../models/app.model';
 
 @Component({
   selector: 'app-chip',
+  standalone: true,
   imports: [],
   templateUrl: './chip.component.html',
   styleUrl: './chip.component.scss'

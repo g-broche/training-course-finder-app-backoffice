@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 import { DetailedDiscussionDTO, DiscussionDTO } from '../../../../models/discussion.model';
 import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
 import { AppRouterButtonComponent } from '../../../shared/components/app-router-button/app-router-button.component';
-import { ChipComponent } from "../../../shared/components/chip/chip.component";
+import { ReportedMessageChipComponent } from '../../../shared/components/chips/reported-message-chip/reported-message-chip.component';
 import { AppLinkLabelComponent } from '../../../shared/components/app-link-label/app-link-label.component';
 
 @Component({
   selector: 'app-discussion-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoadingSpinnerComponent, AppRouterButtonComponent, ChipComponent, AppLinkLabelComponent],
+  imports: [CommonModule, RouterModule, LoadingSpinnerComponent, AppRouterButtonComponent, ReportedMessageChipComponent, AppLinkLabelComponent],
   templateUrl: './discussion-list.component.html',
   styleUrl: './discussion-list.component.scss'
 })

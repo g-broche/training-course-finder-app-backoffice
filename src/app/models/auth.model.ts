@@ -17,7 +17,7 @@ export interface DecodedToken {
   displayName: string;
   isVerified: boolean;
   hasAcceptedGdpr: boolean;
-  userCreatedAt: number; // timestamp in milliseconds
+  createdAt: number; // timestamp in milliseconds
   iat: number; // issued at
   exp: number; // expiration
 }
@@ -31,9 +31,9 @@ export interface CurrentUser {
   displayName: string;
   isVerified: boolean;
   hasAcceptedGdpr: boolean;
-  userCreatedAt: Date;
+  createdAt: Date;
 }
 
-export interface Role {
+interface Role {
   name: string;
 }

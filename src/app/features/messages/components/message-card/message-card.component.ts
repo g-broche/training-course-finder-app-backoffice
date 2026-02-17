@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageDTO } from '../../../../models/message.model';
-import { ChipComponent } from '../../../shared/components/chip/chip.component';
+import { ChipComponent } from '../../../shared/components/chips/chip/chip.component';
 import { toLongDateString } from '../../../shared/utils/pipe';
 
 @Component({
@@ -16,7 +16,7 @@ export class MessageCardComponent {
   @Input({ required: true }) isAnnounceCreator!: boolean;
   @Input() asChatMessage: boolean = false;
 
-  formatDate(dateString: string): string {
-    return toLongDateString(dateString);
+  formatDate(date: string): string {
+    return toLongDateString(date);
   }
 }

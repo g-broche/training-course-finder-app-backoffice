@@ -1,18 +1,20 @@
-export type UserStatus = "allowed" | "banned";
+import { Role, UserStatus } from "./app.model";
 
 export interface UserExcerpt {
   id: string;
   displayName: string;
 }
 
-export interface UserDetailsDTO {
-  uuid: string;
+export interface UserDTO {
+  id: string;
   email: string;
-  roles: string[];
+  roles: Role[];
+  status: UserStatus;
   firstName: string;
   lastName: string;
   displayName: string;
   isVerified: boolean;
   hasAcceptedGdpr: boolean;
-  userCreatedAt: Date;
+  hasHadReportedMessages: boolean;
+  createdAt: string;
 }

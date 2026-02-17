@@ -1,0 +1,25 @@
+@use "sass:color";
+@use "styles/variables" as *;
+
+.user-list {
+  width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: $padding-xl;
+  color: $colorTertiary;
+  font-size: $font-size-l;
+}
+
+.grid-table {
+  grid-template-columns: 1.5fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.start-cell {
+  text-align: start;
+}
+
+.center-cell {
+  text-align: center;
+}

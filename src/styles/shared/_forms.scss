@@ -19,6 +19,12 @@ form {
     color: $colorTertiary;
   }
 
+  .filter-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $padding-m;
+  }
+
   .form-group {
     margin-bottom: $padding-m;
 
@@ -30,8 +36,15 @@ form {
     }
   }
 
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $padding-m;
+    margin-top: $padding-m;
+  }
+
   button[type="submit"] {
-    width: 100%;
+    width: "fit-content";
   }
 }
 
@@ -49,6 +62,21 @@ select {
 
   &:focus {
     outline: 2px solid $colorInteractiveActive;
+  }
+}
+
+.filter-section {
+  background-color: $colorSecondary;
+  padding: $padding-l;
+  border-radius: $border-radius-m;
+  margin-bottom: $padding-l;
+  box-shadow: $boxShadow;
+
+  h3 {
+    color: $colorTertiary;
+    margin-bottom: $padding-m;
+    font-size: $font-size-l;
+    font-weight: $font-weight-bolder;
   }
 }
 

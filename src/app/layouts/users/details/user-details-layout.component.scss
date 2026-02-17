@@ -1,0 +1,39 @@
+@use "styles/variables" as *;
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-l;
+  padding: $padding-l;
+}
+
+.layout-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-content-section {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-m;
+
+  h2 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bolder;
+    color: $colorTertiary;
+    margin: 0;
+  }
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding-xl;
+  font-size: $font-size-l;
+  color: $colorTertiary;
+}
+
+.error-state {
+  color: $colorDanger;
+}

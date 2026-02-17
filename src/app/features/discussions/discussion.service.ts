@@ -15,17 +15,21 @@ export class DiscussionService {
    * @param page Page number (0-indexed)
    * @param size Number of items per page
    * @param orderBy Order by 'createdDate' or 'lastMessageDate' (default: 'createdDate')
+   * @param onlyReported Optional filter to show only discussions with reported messages
    * @returns Paginated response with discussions
    */
   async getDiscussionsPaginated(
     page: number = 0,
     size: number = 20,
-    orderBy: 'createdDate' | 'lastMessageDate' = 'createdDate'
+    orderBy: 'createdDate' | 'lastMessageDate' = 'createdDate',
+    onlyReported?: boolean
   ): Promise<ApiResponse<PaginatedResponse<DiscussionDTO>>> {
     try {
-      const response = await this.apiService.get<ApiResponse<PaginatedResponse<DiscussionDTO>>>(
-        `/api/admin/discussions/paginated?page=${page}&size=${size}&orderBy=${orderBy}`
-      );
+      let url = `/api/admin/discussions/paginated?page=${page}&size=${size}&orderBy=${orderBy}`;
+      if (onlyReported !== undefined) {
+        url += `&onlyReported=${onlyReported}`;
+      }
+      const response = await this.apiService.get<ApiResponse<PaginatedResponse<DiscussionDTO>>>(url);
       return response;
     } catch (error) {
       console.error('Failed to fetch discussions:', error);
@@ -55,7 +59,7 @@ export class DiscussionService {
    */
   async updateInteractivityState(discussionId: string, newState: InteractivityState): Promise<ApiResponse<DetailedDiscussionDTO>> {
     try {
-      const response = await this.apiService.put<ApiResponse<DetailedDiscussionDTO>>(`/api/admin/discussions/${discussionId}/interactivity`, { interactivityState: newState });
+      const response = await this.apiService.patch<ApiResponse<DetailedDiscussionDTO>>(`/api/admin/discussions/${discussionId}/interactivity`, { interactivityState: newState });
       return response;
     } catch (error) {
       console.error('Failed to update discussion interactivity state:', error);

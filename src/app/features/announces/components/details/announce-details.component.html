@@ -14,77 +14,69 @@
   <div class="info-grid">
     <div class="info-section">
       <h2>Basic Information</h2>
-      <div class="info-row">
-        <span>ID:</span>
-        <span>{{ announce.id }}</span>
-      </div>
-      <div class="info-row">
-        <span>Category:</span>
-        <span>{{ announce.category }}</span>
-      </div>
-      <div class="info-row">
-        <span>Username:</span>
-        <app-link-label
-          [label]="announce.author.displayName"
-          [link]="['/users/' + announce.author.displayName]"
-        />
-      </div>
-      <div class="info-row-button">
-        <span>Type:</span>
-        <app-chip
-          [label]="announce.type"
-          [type]="AnnounceTypeChip[announce.type]"
-        />
-        <app-dropdown-menu
-          buttonLabel="Change value"
-          loadingLabel="Updating..."
-          [isLoading]="isUpdatingType"
-          [menuItems]="typeMenuItems"
-          (itemSelected)="handleTypeChange($event)"
-        />
-      </div>
-      <div class="info-row-button">
-        <span>Status:</span>
-        <app-chip
-          [label]="announce.status"
-          [type]="AnnounceStatusChip[announce.status]"
-        />
-        <app-dropdown-menu
-          buttonLabel="Change value"
-          loadingLabel="Updating..."
-          [isLoading]="isUpdatingStatus"
-          [menuItems]="statusMenuItems"
-          (itemSelected)="handleStatusChange($event)"
-        />
-      </div>
-      <div class="info-row-button">
-        <span>Interactivity:</span>
-        <app-chip
-          [label]="announce.interactivityState"
-          [type]="InteractivityStateChip[announce.interactivityState]"
-        />
-        <app-dropdown-menu
-          buttonLabel="Change value"
-          loadingLabel="Updating..."
-          [isLoading]="isUpdatingInteractivity"
-          [menuItems]="interactivityMenuItems"
-          (itemSelected)="handleInteractivityChange($event)"
-        />
-      </div>
-      <div class="info-row-button">
-        <span>Visibility Status:</span>
-        <app-chip
-          [label]="announce.recordStatus"
-          [type]="RecordStatusChip[announce.recordStatus]"
-        />
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>ID:</span>
+          <span>{{ announce.id }}</span>
+        </div>
+        <div class="info-row">
+          <span>Category:</span>
+          <span>{{ announce.category }}</span>
+        </div>
+        <div class="info-row">
+          <span>Username:</span>
+          <app-link-label
+            [label]="announce.author.displayName"
+            [link]="['/users/' + announce.author.displayName]"
+          />
+        </div>
+        <div class="info-row-button">
+          <span>Type:</span>
+          <app-announce-type-chip [announceType]="announce.type" />
+          <app-dropdown-menu
+            buttonLabel="Change value"
+            loadingLabel="Updating..."
+            [isLoading]="isUpdatingType"
+            [menuItems]="typeMenuItems"
+            (itemSelected)="handleTypeChange($event)"
+          />
+        </div>
+        <div class="info-row-button">
+          <span>Status:</span>
+          <app-announce-status-chip [announceStatus]="announce.status" />
+          <app-dropdown-menu
+            buttonLabel="Change value"
+            loadingLabel="Updating..."
+            [isLoading]="isUpdatingStatus"
+            [menuItems]="statusMenuItems"
+            (itemSelected)="handleStatusChange($event)"
+          />
+        </div>
+        <div class="info-row-button">
+          <span>Interactivity:</span>
+          <app-interactivity-chip
+            [interactivityState]="announce.interactivityState"
+          />
+          <app-dropdown-menu
+            buttonLabel="Change value"
+            loadingLabel="Updating..."
+            [isLoading]="isUpdatingInteractivity"
+            [menuItems]="interactivityMenuItems"
+            (itemSelected)="handleInteractivityChange($event)"
+          />
+        </div>
+        <div class="info-row-button">
+          <span>Visibility Status:</span>
+          <app-record-status-chip [recordStatus]="announce.recordStatus" />
 
-        <app-dropdown-menu
-          buttonLabel="Change value"
-          loadingLabel="Updating..."
-          [isLoading]="isUpdatingVisibility"
-          [menuItems]="visibilityMenuItems"
-          (itemSelected)="handleVisibilityChange($event)"
-        />
+          <app-dropdown-menu
+            buttonLabel="Change value"
+            loadingLabel="Updating..."
+            [isLoading]="isUpdatingVisibility"
+            [menuItems]="visibilityMenuItems"
+            (itemSelected)="handleVisibilityChange($event)"
+          />
+        </div>
       </div>
     </div>
 
@@ -95,33 +87,37 @@
 
     <div class="info-section">
       <h2>Location</h2>
-      <div class="info-row">
-        <span>City:</span>
-        <span>{{ announce.city }}</span>
-      </div>
-      <div class="info-row">
-        <span>Country:</span>
-        <span>{{ announce.country }}</span>
-      </div>
-      <div class="info-row">
-        <span>Coordinates:</span>
-        <span>{{ announce.latitude }}, {{ announce.longitude }}</span>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>City:</span>
+          <span>{{ announce.city }}</span>
+        </div>
+        <div class="info-row">
+          <span>Country:</span>
+          <span>{{ announce.country }}</span>
+        </div>
+        <div class="info-row">
+          <span>Coordinates:</span>
+          <span>{{ announce.latitude }}, {{ announce.longitude }}</span>
+        </div>
       </div>
     </div>
 
     <div class="info-section">
       <h2>Dates</h2>
-      <div class="info-row">
-        <span>Relevant Date:</span>
-        <span>{{ announce.relevantDate }}</span>
-      </div>
-      <div class="info-row">
-        <span>Created At:</span>
-        <span>{{ formatDate(announce.createdAt) }}</span>
-      </div>
-      <div class="info-row">
-        <span>Edited At:</span>
-        <span>{{ formatDate(announce.editedAt) }}</span>
+      <div class="info-wrapper">
+        <div class="info-row">
+          <span>Relevant Date:</span>
+          <span>{{ announce.relevantDate }}</span>
+        </div>
+        <div class="info-row">
+          <span>Created At:</span>
+          <span>{{ formatDate(announce.createdAt) }}</span>
+        </div>
+        <div class="info-row">
+          <span>Edited At:</span>
+          <span>{{ formatDate(announce.editedAt) }}</span>
+        </div>
       </div>
     </div>
   </div>

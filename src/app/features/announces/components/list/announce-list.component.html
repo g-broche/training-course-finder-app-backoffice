@@ -8,6 +8,7 @@
       <div class="grid-header">
         <div class="grid-cell start-cell">Created</div>
         <div class="grid-cell start-cell">Author</div>
+        <div class="grid-cell start-cell">Title</div>
         <div class="grid-cell start-cell">Category</div>
         <div class="grid-cell center-cell">Type</div>
         <div class="grid-cell center-cell">Photo</div>
@@ -31,14 +32,18 @@
           </div>
           <div class="grid-cell start-cell">
             <span class="text-truncate">
+              {{ announce.title }}
+            </span>
+          </div>
+          <div class="grid-cell start-cell">
+            <span class="text-truncate">
               {{ announce.category }}
             </span>
           </div>
           <div class="grid-cell center-cell">
-            <app-chip
-              [label]="announce.type"
-              [type]="getTypeChipType(announce.type)"
-            ></app-chip>
+            <app-announce-type-chip
+              [announceType]="announce.type"
+            ></app-announce-type-chip>
           </div>
           <div class="grid-cell center-cell">
             @if (announce.photo) {
@@ -52,10 +57,9 @@
             }
           </div>
           <div class="grid-cell center-cell">
-            <app-chip
-              [label]="announce.recordStatus"
-              [type]="getStatusChipType(announce.recordStatus)"
-            ></app-chip>
+            <app-record-status-chip
+              [recordStatus]="announce.recordStatus"
+            ></app-record-status-chip>
           </div>
           <div class="grid-cell center-cell">
             <app-router-button

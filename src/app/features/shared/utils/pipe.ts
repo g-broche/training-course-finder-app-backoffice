@@ -1,6 +1,5 @@
-export const toLongDateString = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleString('en-US', {
+export const toLongDateString = (date: string): string => {
+  return new Date(date).toLocaleString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',

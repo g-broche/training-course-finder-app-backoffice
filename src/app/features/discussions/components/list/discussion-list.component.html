@@ -8,7 +8,7 @@
       <div class="grid-header">
         <div class="grid-cell start-cell">Created</div>
         <div class="grid-cell start-cell">Last Message</div>
-        <div class="grid-cell start-cell">Messages</div>
+        <div class="grid-cell center-cell">Messages</div>
         <div class="grid-cell center-cell">Reported</div>
         <div class="grid-cell start-cell">Related Announce</div>
         <div class="grid-cell start-cell">Author</div>
@@ -33,9 +33,9 @@
             </span>
           </div>
           <div class="grid-cell center-cell">
-            @if (discussion.hasReportedMessage) {
-              <app-chip label="Yes" type="danger"></app-chip>
-            }
+            <app-reported-message-chip
+              [hasReportedMessage]="discussion.hasReportedMessage"
+            />
           </div>
           <div class="grid-cell title-cell start-cell">
             <app-link-label

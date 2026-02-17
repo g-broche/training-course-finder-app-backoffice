@@ -2,6 +2,26 @@
   <div class="page-header">
     <div class="header-content">
       <h1>Discussions</h1>
+      <div class="header-actions">
+        <div>
+          <span>Order by:</span>
+          <app-button
+            [label]="getOrderByLabel()"
+            [category]="'action'"
+            [isDisabled]="initialLoading || paginating"
+            (callback)="toggleOrderBy()"
+          />
+        </div>
+        <div>
+          <span>Filter:</span>
+          <app-button
+            [label]="getReportedFilterLabel()"
+            [category]="'action'"
+            [isDisabled]="initialLoading || paginating"
+            (callback)="toggleReported()"
+          />
+        </div>
+      </div>
       @if (totalElements > 0) {
         <p>
           {{ totalElements }} total discussion{{
@@ -9,17 +29,6 @@
           }}
         </p>
       }
-    </div>
-    <div class="header-actions">
-      <div>
-        <span>Order by:</span>
-        <app-button
-          [label]="getOrderByLabel()"
-          [category]="'action'"
-          [isDisabled]="initialLoading || paginating"
-          (callback)="toggleOrderBy()"
-        />
-      </div>
     </div>
   </div>
 
