@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 6rem;
   padding: $padding-m $padding-l;
   background-color: $colorSecondary;
   box-shadow: 0 2px 4px rgba($colorBackdrop, 0.1);
@@ -20,7 +21,7 @@
   text-decoration: none;
   font-size: $font-size-l;
   font-weight: $font-weight-regular;
-  padding: $padding-xs $padding-s;
+  padding: 0 $padding-s;
   border-radius: 4px;
   transition: color 0.2s ease;
   text-align: center;
@@ -36,6 +37,7 @@
 }
 
 .user-info {
+  height: 100%;
   display: flex;
   align-items: center;
   gap: $padding-m;
@@ -43,6 +45,14 @@
 
 .user-display-name {
   color: $colorTertiary;
-  font-size: $font-size-m;
+  font-size: $font-size-l;
   font-weight: $font-weight-bolder;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav {
+    display: flex;
+    gap: 0;
+    align-items: center;
+  }
 }

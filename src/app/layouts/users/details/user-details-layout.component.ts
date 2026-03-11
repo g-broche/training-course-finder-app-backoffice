@@ -70,6 +70,7 @@ export class UserDetailsLayoutComponent implements OnInit {
     this.loading = true;
     try {
       const response = await this.userService.getUserByDisplayName(this.displayName);
+      console.log('User details response:', response);
       this.user = response.data ?? null;
     } catch (error) {
       this.notificationService.showError('Failed to load user details');

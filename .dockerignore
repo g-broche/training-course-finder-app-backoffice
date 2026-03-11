@@ -1,0 +1,20 @@
+# Dependencies (not needed — app is already compiled before docker build)
+node_modules/
+
+# Angular incremental build cache
+.angular/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Docs / config not needed at runtime
+*.md
+.wip/
+
+# Tests
+coverage/

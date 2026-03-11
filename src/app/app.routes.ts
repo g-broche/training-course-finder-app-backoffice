@@ -6,6 +6,7 @@ import { DiscussionsIndexComponent } from './layouts/discussions/index/discussio
 import { DiscussionDetailsLayoutComponent } from './layouts/discussions/details/discussion-details-layout.component';
 import { UsersIndexComponent } from './layouts/users/index/user-index.component';
 import { UserDetailsLayoutComponent } from './layouts/users/details/user-details-layout.component';
+import { NotFoundComponent } from './layouts/errors/not-found/not-found.component';
 import { authGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
@@ -47,5 +48,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/announces',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    canActivate: [authGuard]
   }
 ];

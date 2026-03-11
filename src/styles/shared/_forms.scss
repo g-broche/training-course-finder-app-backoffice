@@ -21,7 +21,7 @@ form {
 
   .filter-inputs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: $padding-m;
   }
 
@@ -82,4 +82,24 @@ select {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px $colorTertiary inset !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  form {
+    .filter-inputs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $padding-m;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  form {
+    .filter-inputs {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $padding-m;
+    }
+  }
 }

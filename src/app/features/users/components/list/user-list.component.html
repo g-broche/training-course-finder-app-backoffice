@@ -4,65 +4,67 @@
   }
 
   @if (!loading && users.length > 0) {
-    <div class="grid-table">
-      <div class="grid-header">
-        <div class="grid-cell start-cell">Created</div>
-        <div class="grid-cell start-cell">Display Name</div>
-        <div class="grid-cell start-cell">Roles</div>
-        <div class="grid-cell start-cell">Status</div>
-        <div class="grid-cell center-cell">Reported Messages</div>
-        <div class="grid-cell center-cell">Verified</div>
-        <div class="grid-cell center-cell">GDPR</div>
-        <div class="grid-cell center-cell">Actions</div>
-      </div>
-      @for (user of users; track user.id) {
-        <div class="grid-row">
-          <div class="grid-cell start-cell">
-            <span class="text-truncate">
-              {{ formatDate(user.createdAt) }}
-            </span>
-          </div>
-          <div class="grid-cell start-cell">
-            <span class="text-truncate">
-              {{ user.displayName }}
-            </span>
-          </div>
-          <div class="grid-cell start-cell">
-            <span class="text-truncate">
-              {{ getRolesDisplay(user.roles) }}
-            </span>
-          </div>
-          <div class="grid-cell center-cell">
-            <app-user-status-chip
-              [userStatus]="user.status"
-            ></app-user-status-chip>
-          </div>
-          <div class="grid-cell center-cell">
-            <app-reported-message-chip
-              [hasReportedMessage]="user.hasHadReportedMessages"
-            ></app-reported-message-chip>
-          </div>
-          <div class="grid-cell center-cell">
-            <app-verified-chip
-              [isVerified]="user.isVerified"
-            ></app-verified-chip>
-          </div>
-          <div class="grid-cell center-cell">
-            <app-gdpr-chip
-              [hasAcceptedGdpr]="user.hasAcceptedGdpr"
-            ></app-gdpr-chip>
-          </div>
-          <div class="grid-cell center-cell">
-            <app-router-button
-              label="View"
-              [path]="['/users', user.displayName]"
-              type="action"
-              size="small"
-            >
-            </app-router-button>
-          </div>
+    <div class="responsive-table">
+      <div class="grid-table">
+        <div class="grid-header">
+          <div class="grid-cell start-cell">Created</div>
+          <div class="grid-cell start-cell">Display Name</div>
+          <div class="grid-cell start-cell">Roles</div>
+          <div class="grid-cell start-cell">Status</div>
+          <div class="grid-cell center-cell">Reported Messages</div>
+          <div class="grid-cell center-cell">Verified</div>
+          <div class="grid-cell center-cell">GDPR</div>
+          <div class="grid-cell center-cell">Actions</div>
         </div>
-      }
+        @for (user of users; track user.id) {
+          <div class="grid-row">
+            <div class="grid-cell start-cell">
+              <span class="text-truncate">
+                {{ formatDate(user.createdAt) }}
+              </span>
+            </div>
+            <div class="grid-cell start-cell">
+              <span class="text-truncate">
+                {{ user.displayName }}
+              </span>
+            </div>
+            <div class="grid-cell start-cell">
+              <span class="text-truncate">
+                {{ getRolesDisplay(user.roles) }}
+              </span>
+            </div>
+            <div class="grid-cell center-cell">
+              <app-user-status-chip
+                [userStatus]="user.status"
+              ></app-user-status-chip>
+            </div>
+            <div class="grid-cell center-cell">
+              <app-reported-message-chip
+                [hasReportedMessage]="user.hasHadReportedMessages"
+              ></app-reported-message-chip>
+            </div>
+            <div class="grid-cell center-cell">
+              <app-verified-chip
+                [isVerified]="user.isVerified"
+              ></app-verified-chip>
+            </div>
+            <div class="grid-cell center-cell">
+              <app-gdpr-chip
+                [hasAcceptedGdpr]="user.hasAcceptedGdpr"
+              ></app-gdpr-chip>
+            </div>
+            <div class="grid-cell center-cell">
+              <app-router-button
+                label="View"
+                [path]="['/users', user.displayName]"
+                type="action"
+                size="small"
+              >
+              </app-router-button>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   }
 

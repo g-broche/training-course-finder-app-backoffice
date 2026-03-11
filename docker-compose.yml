@@ -1,0 +1,10 @@
+services:
+  backoffice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backoffice:latest
+    container_name: backoffice
+    restart: unless-stopped
+    ports:
+      - "4200:80"
