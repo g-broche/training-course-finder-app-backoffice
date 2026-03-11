@@ -16,13 +16,11 @@ export const authGuard: CanActivateFn = async (route, state) => {
     
     if (!isAuthenticated) {
       console.log('User not authenticated, redirecting to login');
-      router.navigate(['/login']);
-      return false;
+      return router.createUrlTree(['/login']);
     }
     return true;
   } catch (error) {
     console.error('Auth guard error:', error);
-    router.navigate(['/login']);
-    return false;
+    return router.createUrlTree(['/login']);
   }
 };

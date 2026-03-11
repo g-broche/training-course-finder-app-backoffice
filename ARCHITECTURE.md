@@ -49,8 +49,8 @@ backoffice
 │   │   ├── environment.development.ts
 │   │   └── environment.ts
 │   ├── styles                       	# Global and shared SCSS partials
-│   │   ├── shared/				# shared styles
-│   │   └── _variables.scss			# scss constants
+│   │   ├── shared/				# shared styles 
+│   │   └── _variables.scss			# scss constants	
 │   ├── index.html                   	# SPA html entry point
 │   ├── main.ts                      	# Angular bootstrap entry point
 │   └── styles.scss                  	# Global stylesheet entry

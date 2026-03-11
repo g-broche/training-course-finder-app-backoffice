@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { LoginCredentials, LoginResponse, CurrentUser } from '../../models/auth.model';
 import { ApiResponse } from '../../models/api.model';
@@ -8,8 +7,8 @@ import { ApiResponse } from '../../models/api.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<CurrentUser | null>(null);
-  public currentUser$: Observable<CurrentUser | null> = this.currentUserSubject.asObservable();
+  private currentUserSignal = signal<CurrentUser | null>(null);
+  public currentUser = this.currentUserSignal.asReadonly();
 
   constructor(private apiService: ApiService) {}
 
@@ -48,16 +47,18 @@ export class AuthService {
       const user = response.data || null;
       const isAdmin = doesUserHaveAdminRole(user);
       if (isAdmin) {
-        this.currentUserSubject.next(user);
+        this.currentUserSignal.set(user);
         return true;
       }
       
-      // No admin role, clear user and logout
-      await this.logout();
+      // No admin role, clear user immediately and logout in background
+      this.currentUserSignal.set(null);
+      void this.logout();
       return false;
     } catch (error) {
       console.error('Auth check failed:', error);
-      await this.logout();
+      this.currentUserSignal.set(null);
+      void this.logout();
       return false;
     }
   }
@@ -71,8 +72,7 @@ export class AuthService {
       const user = response.data || null;
       const isAdmin = doesUserHaveAdminRole(user);
       if (isAdmin) {
-        this.currentUserSubject.next(user);
-        console.log('User loaded with admin role:', user);
+        this.currentUserSignal.set(user);
       } else {
         console.error('User does not have admin role');
         await this.logout();
@@ -87,7 +87,7 @@ export class AuthService {
    * Gets the current user value (synchronous)
    */
   getCurrentUser(): CurrentUser | null {
-    return this.currentUserSubject.value;
+    return this.currentUserSignal();
   }
 
   /**
@@ -118,7 +118,7 @@ export class AuthService {
       console.error('Logout API error:', error);
     } finally {
       // Clear user state regardless of API result
-      this.currentUserSubject.next(null);
+      this.currentUserSignal.set(null);
       console.log('User logged out');
     }
   }

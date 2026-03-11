@@ -17,7 +17,7 @@
       }
     </div>
 
-    <div class="message-content">{{ message.content }}</div>
+    <div class="message-content" [innerHTML]="message.content | decodeHtmlEntities"></div>
 
     <div class="message-footer">
       <span class="message-date">{{ formatDate(message.createdAt) }}</span>

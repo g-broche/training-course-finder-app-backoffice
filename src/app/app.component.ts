@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
+import {
+  Router,
+  RouterOutlet,
+  NavigationEnd,
+  NavigationStart,
+  NavigationCancel,
+  NavigationError
+} from '@angular/router';
 import { AppHeaderComponent } from './features/shared/components/app-header/app-header.component';
 import { NotificationsComponent } from './features/shared/components/notifications/notifications.component';
 
@@ -13,14 +19,22 @@ import { NotificationsComponent } from './features/shared/components/notificatio
 export class AppComponent {
   title = 'backoffice';
   showHeader = true;
+  isNavigating = false;
 
   constructor(private router: Router) {
-    // Listen to navigation events to conditionally show header
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        // Hide header on login page
-        this.showHeader = !event.url.includes('/login');
-      });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.isNavigating = true;
+      }
+
+      if (event instanceof NavigationEnd) {
+        this.showHeader = !event.urlAfterRedirects.includes('/login');
+        this.isNavigating = false;
+      }
+
+      if (event instanceof NavigationCancel || event instanceof NavigationError) {
+        this.isNavigating = false;
+      }
+    });
   }
 }

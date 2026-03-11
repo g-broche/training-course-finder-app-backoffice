@@ -20,7 +20,7 @@
   </nav>
 
   <div class="user-info">
-    @if (currentUser$ | async; as user) {
+    @if (currentUser(); as user) {
       <span class="user-display-name">{{ user.displayName }}</span>
     }
     <app-logout-button />

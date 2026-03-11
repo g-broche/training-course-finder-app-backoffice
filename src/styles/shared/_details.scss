@@ -111,3 +111,16 @@
     }
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  .details-content {
+    padding: $padding-m;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .info-row-button {
+    grid-template-columns: 8rem 10rem 10rem;
+  }
+}
