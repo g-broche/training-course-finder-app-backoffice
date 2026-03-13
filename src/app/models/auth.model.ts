@@ -6,6 +6,7 @@ export interface LoginCredentials {
 export interface LoginResponse {
   success: boolean;
   message?: string;
+  data?: CurrentUser;
 }
 
 export interface DecodedToken {

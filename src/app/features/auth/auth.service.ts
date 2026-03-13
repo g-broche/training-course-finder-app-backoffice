@@ -14,21 +14,25 @@ export class AuthService {
 
   /**
    * Attempts to log in with the provided credentials
-   * API will return an httpOnly cookie containing JWT with user claims
+   * API returns auth cookies and user data in ApiResponse.data
    */
   async login(credentials: LoginCredentials): Promise<LoginResponse> {
     try {
-      const response = await this.apiService.post<LoginResponse>('/api/admin/auth/signin', credentials);
-      console.log('Login response:', response);
-      
-      // If login successful, fetch and set current user from JWT claims
+      const response = await this.apiService.post<ApiResponse<CurrentUser>>('/api/admin/auth/signin', credentials);      
+      // If login succeeds, trust the user data returned by the auth endpoint
       if (response.success) {
-        await this.loadUserFromToken();
+        const hasAdminRole = this.setUserFromAuthResponse(response.data);
+        if (!hasAdminRole) {
+          await this.logout();
+          return {
+            success: false,
+            message: 'User does not have valid access rights'
+          };
+        }
       }
       
       return response;
     } catch (error) {
-      console.error('Login error:', error);
       return {
         success: false,
         message: error instanceof Error ? error.message : 'Login failed'
@@ -56,30 +60,10 @@ export class AuthService {
       void this.logout();
       return false;
     } catch (error) {
-      console.error('Auth check failed:', error);
+      console.error('Auth check failed');
       this.currentUserSignal.set(null);
       void this.logout();
       return false;
-    }
-  }
-
-  /**
-   * Loads user data from JWT claims via API
-   */
-  private async loadUserFromToken(): Promise<void> {
-    try {
-      const response = await this.apiService.get<ApiResponse<CurrentUser>>('/api/auth/me');
-      const user = response.data || null;
-      const isAdmin = doesUserHaveAdminRole(user);
-      if (isAdmin) {
-        this.currentUserSignal.set(user);
-      } else {
-        console.error('User does not have admin role');
-        await this.logout();
-      }
-    } catch (error) {
-      console.error('Failed to load user from token:', error);
-      await this.logout();
     }
   }
 
@@ -96,7 +80,14 @@ export class AuthService {
    */
   async refreshToken(): Promise<void> {
     try {
-      await this.apiService.post('/api/admin/auth/refresh', {});
+      const response = await this.apiService.post<ApiResponse<CurrentUser>>('/api/admin/auth/refresh', {});
+      if (response.success) {
+        const hasAdminRole = this.setUserFromAuthResponse(response.data);
+        if (!hasAdminRole) {
+          throw new Error('User does not have admin role');
+        }
+      }
+
       // Tokens are automatically updated via httpOnly cookies
       console.log('Token refreshed successfully');
     } catch (error) {
@@ -121,6 +112,17 @@ export class AuthService {
       this.currentUserSignal.set(null);
       console.log('User logged out');
     }
+  }
+
+  private setUserFromAuthResponse(user?: CurrentUser): boolean {
+    if (doesUserHaveAdminRole(user || null)) {
+      this.currentUserSignal.set(user || null);
+      return true;
+    }
+
+    console.error('invalid user');
+    this.currentUserSignal.set(null);
+    return false;
   }
 }
 
