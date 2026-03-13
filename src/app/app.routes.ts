@@ -7,12 +7,13 @@ import { DiscussionDetailsLayoutComponent } from './layouts/discussions/details/
 import { UsersIndexComponent } from './layouts/users/index/user-index.component';
 import { UserDetailsLayoutComponent } from './layouts/users/details/user-details-layout.component';
 import { NotFoundComponent } from './layouts/errors/not-found/not-found.component';
-import { authGuard } from './features/auth/auth.guard';
+import { authGuard, loginGuard } from './features/auth/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'announces',
